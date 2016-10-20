@@ -1,3 +1,4 @@
+from ValidAccounts import ValidAccounts
 class Session:
 
 	def __init__(self, userInput):
@@ -7,7 +8,6 @@ class Session:
 
 			while userInput != "agent" and userInput != "atm":
 				userInput = self.getInput()
-
 				if userInput != "agent" and userInput != "atm":
 					print "Please enter 'atm' or 'agent'"
 			if userInput == "agent":
