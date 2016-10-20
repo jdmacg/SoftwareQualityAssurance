@@ -7,7 +7,7 @@ transactionIndex = 2
 
 #accountsFile = open(sys.argv[accountsIndex])
 #transactionFile = open(sys.argv[transactionIndex])
-transactionFile = ""
+transactionFile = "TransactionSummary.txt"
 accountsFile = "ValidAccounts.txt"
 
 while True:

@@ -1,3 +1,5 @@
+import pdb
+maxLineLengthWithoutNewline = 59
 
 class FrontEndValidator:
 
@@ -13,12 +15,12 @@ class FrontEndValidator:
             else:
                 return False
 
-    def checkValidAccount(self, validAccounts, invalidAccounts, accountChecking):
+    def checkValidAccount(self, validAccounts, invalidAccounts, accountOfInterest):
         for key in invalidAccounts:
-            if accountChecking == key:
+            if accountOfInterest == key:
                 return False
         for existingAccounts in validAccounts :
-            if existingAccounts == accountChecking:
+            if existingAccounts == accountOfInterest:
                 return True
         return False
 
@@ -36,16 +38,18 @@ class FrontEndValidator:
                 return False
         return True
 
-    def isValidAccountNumberToCreate(self, accountNumber):
+    def isValidAccountNumberToCreate(self,accountNumber, isTransactionCheck=False):
+        pdb.set_trace()
         if len(str(accountNumber)) != 8:
             print "Must be exactly 8 digits"
             return False
         elif str(accountNumber)[0] == "0":
             print "Numbers cannot start with 0"
             return False
-        if self.checkValidAccount(accountNumber) == True:
-            print "Account number already exists"
-            return False
+        if isTransactionCheck is False:
+            if self.checkValidAccount(accountNumber) == True:
+                print "Account number already exists"
+                return False
         else:
             return True
 
@@ -58,3 +62,14 @@ class FrontEndValidator:
             return False
         else:
             return True
+
+    def checkValidTransactionSummary(self, transactionCode, firstAccount, secondAccount, amount, accountName):
+        if len(" ".join([transactionCode, firstAccount, secondAccount, amount, accountName])) > maxLineLengthWithoutNewline:
+            return False
+        if not self.isValidAccountNameToCreate(accountName):
+            return False
+        #if not self.isValidAccountNumberToCreate(firstAccount, isTransactionCheck=True):
+        #    return False
+        #if not self.isValidAccountNumberToCreate(secondAccount, isTransactionCheck=True):
+        #    return False
+        return True
