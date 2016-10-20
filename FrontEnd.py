@@ -18,7 +18,7 @@ while True:
 print("Welcome!")
 
 
-while userInput != "logout":
+while session.isLoggedIn is True:
 	userInput = session.getInput()
 	session.runCommand(userInput)
 
