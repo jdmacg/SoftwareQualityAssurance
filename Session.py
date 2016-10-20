@@ -2,6 +2,17 @@ import pdb
 from FrontEndValidator import FrontEndValidator
 from ValidAccounts import ValidAccounts
 from Transactions import Transactions
+
+transactionCodes = {
+	'delete': 'DL',
+	'withdraw' : 'WD',
+	'transfer' : 'TR',
+	'create' : 'CR',
+	'delete' : 'DL',
+	'deposit' : 'DE'
+}
+
+
 class Session:
 
 	def __init__(self, userInput, accountFile, transactionFile):
@@ -61,15 +72,17 @@ class Session:
 			accountNumber = self.getInput("Please enter account number: ")
 			accountName = self.getInput("Please enter account name: ")
 			self.validAccount.deleteAccount(accountNumber, accountName)
+			self.transactionRecords.appendToTransactionFile(transactionCodes['delete'], firstAccount=accountNumber, accountName=accountName)
 
 
 	def create(self):
 		accountNumber = self.getInput("Please enter account number: ")
 		accountName = self.getInput("Please enter account name: ")
-
 		if self.frontEndValidator.isValidAccountNumberToCreate(accountNumber) and \
-			self.frontEndValidator.isValidAccountNameToCreate(accountName):
+			self.frontEndValidator.isValidAccountNameToCreate(accountName) and \
+				self.admin is True:
 				self.validAccount.createAccount(accountName, accountNumber )
+				self.transactionRecords.appendToTransactionFile(transactionCodes['create'], firstAccount=accountNumber, accountName=accountName)
 
 	def withdraw(self):
 		accountNumber = self.getInput("Enter account number to withdraw from: ")
@@ -81,6 +94,7 @@ class Session:
 			print "invalid amount requested"
 		else:
 			self.validAccount.withdrawAmount(accountNumber, int(requestedAmount))
+			self.transactionRecords.appendToTransactionFile(transactionCodes['withdraw'], firstAccount=accountNumber, amount=requestedAmount)
 
 	def deposit(self):
 		accountNumber = self.getInput("Enter account number to deposit to: ")
@@ -91,6 +105,8 @@ class Session:
 		if not self.frontEndValidator.checkValidAmount(self.admin, (int(requestedAmount))):
 			print "invalid amount requested"
 		else:
+			self.validAccount.depositAmount(accountNumber, int(requestedAmount))
+			self.transactionRecords.appendToTransactionFile(transactionCodes['deposit'], firstAccount=accountNumber, amount=requestedAmount)
 			print "Amount $" + str(requestedAmount)[:-2] + "." + str(requestedAmount)[-2:] + " has been deposited"
 
 	def transfer(self):
@@ -110,4 +126,5 @@ class Session:
 			print "invalid amount requested"
 		else:
 			self.validAccount.withdrawAmount(accountNumberFrom, int(requestedAmount))
+			self.transactionRecords.appendToTransactionFile(transactionCodes['transfer'], firstAccount=accountNumberFrom, secondAccount=accountNumberTo, amount=requestedAmount)
 			print "Amount $" + str(requestedAmount)[:-2] + "." + str(requestedAmount)[-2:] + " has been transferred to " + accountNumberTo
