@@ -1,10 +1,14 @@
 from ValidAccounts import ValidAccounts
 class Session:
 
-	def __init__(self, userInput):
+	def __init__(self, userInput, accountFile, transactionFile):
+	    self.validAccount = ValidAccounts(accountFile)
+	    self.transactionRecords = Transactions(transactionFile)
 		self.admin = None
 		self.isReady = False
+		
 		if userInput == "login":
+		#self.amount = 0
 
 			while userInput != "agent" and userInput != "atm":
 				userInput = self.getInput()
@@ -55,3 +59,24 @@ class Session:
 			return 1
 		else:
 			return 0
+			
+    def withdraw(self):
+        accountNumber = self.getInput("Enter account number to withdraw from")
+        while not self.validAccount.checkAccount(accountNumber): 
+            print accountNumber, " is an invalid account number
+            accountNumber = self.getInput("Enter account number to withdraw from")
+        requestedAmount = self.getInput("Enter amount to withdraw")
+        if not self.validAccount.checkWithdrawAmount(requestedAmount,accountNumber,self.admin):
+            print "invalid amount requested"
+        else:
+            self.validAccount.withdrawAmount(requestedAmount,accountNumber)
+            
+            
+            
+        
+        
+            
+        
+            
+        
+        
