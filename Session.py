@@ -6,6 +6,15 @@ from Transactions import Transactions
 #there exists a transaction record, the valid accounts class, if the current class of session is an admin
 #if the current session is ready (i.e logged in, not logged off), and if the current session is logged in
 #this class contains all of the necessary calls to complete the availablec ommands exisiting in simbank
+
+transactionCodes = {
+	'delete': 'DL',
+	'withdraw' : 'WD',
+	'transfer' : 'TR',
+	'create' : 'CR',
+	'delete' : 'DL',
+	'deposit' : 'DE'
+}
 class Session:
 	#Inputs: User input (the command, ideally "login"), name of the valid account file, name of the transaction file
 	#outputs: None
@@ -78,6 +87,7 @@ class Session:
 			accountNumber = self.getInput("Please enter account number: ")
 			accountName = self.getInput("Please enter account name: ")
 			self.validAccount.deleteAccount(accountNumber, accountName)
+			self.transactionRecords.appendToTransactionFile(transactionCodes['delete'], firstAccount=accountNumber, accountName=accountName)
 
 	#inputs: none
 	#outputs: none
@@ -86,14 +96,17 @@ class Session:
 	def create(self):
 		accountNumber = self.getInput("Please enter account number: ")
 		accountName = self.getInput("Please enter account name: ")
-
 		if self.frontEndValidator.isValidAccountNumberToCreate(accountNumber) and \
-			self.frontEndValidator.isValidAccountNameToCreate(accountName):
+			self.frontEndValidator.isValidAccountNameToCreate(accountName) and \
+				self.admin is True:
 				self.validAccount.createAccount(accountName, accountNumber )
+				self.transactionRecords.appendToTransactionFile(transactionCodes['create'], firstAccount=accountNumber,
+														accountName=accountName)
 	#inputs : none
 	#outputs : none
 	#description: gets account to be withdrawn from, and the ammount to be withdrawn. Throughout the method
 	#various other methods are called to check that the data entered is valid
+
 	def withdraw(self):
 		accountNumber = self.getInput("Enter account number to withdraw from: ")
 		if not self.frontEndValidator.checkValidAccount(self.validAccount.validAccounts, self.validAccount.invalidAccounts, accountNumber):
@@ -104,6 +117,9 @@ class Session:
 			print "invalid amount requested"
 		else:
 			self.validAccount.withdrawAmount(accountNumber, int(requestedAmount))
+			self.transactionRecords.appendToTransactionFile(transactionCodes['withdraw'], firstAccount=accountNumber,
+															amount=requestedAmount)
+
 	#inputs: none
 	#outputs; none
 	#description: Asks for the account number to deposist to and the amount to deposist. throughout the method various other
@@ -117,7 +133,10 @@ class Session:
 		if not self.frontEndValidator.checkValidAmount(self.admin, (int(requestedAmount))):
 			print "invalid amount requested"
 		else:
+			self.validAccount.depositAmount(accountNumber, int(requestedAmount))
+			self.transactionRecords.appendToTransactionFile(transactionCodes['deposit'], firstAccount=accountNumber, amount=requestedAmount)
 			print "Amount $" + str(requestedAmount)[:-2] + "." + str(requestedAmount)[-2:] + " has been deposited"
+
 	# inputs: none
 	# outputs; none
 	# description: Asks for the account number to transfer from then the account number to trabsfer ti and the amount to transfer. throughout the method various other
@@ -139,4 +158,5 @@ class Session:
 			print "invalid amount requested"
 		else:
 			self.validAccount.withdrawAmount(accountNumberFrom, int(requestedAmount))
+			self.transactionRecords.appendToTransactionFile(transactionCodes['transfer'], firstAccount=accountNumberFrom, secondAccount=accountNumberTo, amount=requestedAmount)
 			print "Amount $" + str(requestedAmount)[:-2] + "." + str(requestedAmount)[-2:] + " has been transferred to " + accountNumberTo

@@ -15,7 +15,7 @@ transactionIndex = 2
 
 #accountsFile = open(sys.argv[accountsIndex])
 #transactionFile = open(sys.argv[transactionIndex])
-transactionFile = ""
+transactionFile = "TransactionSummary.txt"
 accountsFile = "ValidAccounts.txt"
 
 #until a logon is sucessful the following loop will continue to run

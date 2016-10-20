@@ -1,3 +1,5 @@
+import pdb
+maxLineLengthWithoutNewline = 59
 
 class FrontEndValidator:
     #inputs: isAdmin (is the current session admin), amount to check if valid
@@ -19,12 +21,13 @@ class FrontEndValidator:
     #Description: Iterates through all of the account numbers and checks if the account number exists
     #in the case that the account number has been deleted it checks the "invalidAccounts" and returns false if the deleted
     #account exists
-    def checkValidAccount(self, validAccounts, invalidAccounts, accountChecking):
+    def checkValidAccount(self, validAccounts, invalidAccounts, accountOfInterest):
+
         for key in invalidAccounts:
-            if accountChecking == key:
+            if accountOfInterest == key:
                 return False
         for existingAccounts in validAccounts :
-            if existingAccounts == accountChecking:
+            if existingAccounts == accountOfInterest:
                 return True
         return False
         # inputs: amount to be withdrawn, account to be withdrawn from, amount that has been withdrawn in the current session, if the current session is admin
@@ -48,16 +51,17 @@ class FrontEndValidator:
     #inputs: Account number of account to create
     #outputs: True/false, true if the account is created
     #description: Checks if the account number given is 8 digits, does not start with 0, and does not already exist
-    def isValidAccountNumberToCreate(self, accountNumber):
+    def isValidAccountNumberToCreate(self,accountNumber, isTransactionCheck=False):
         if len(str(accountNumber)) != 8:
             print "Must be exactly 8 digits"
             return False
         elif str(accountNumber)[0] == "0":
             print "Numbers cannot start with 0"
             return False
-        if self.checkValidAccount(accountNumber) == True:
-            print "Account number already exists"
-            return False
+        if isTransactionCheck is False:
+            if self.checkValidAccount(accountNumber) == True:
+                print "Account number already exists"
+                return False
         else:
             return True
     #inputs: Account name
@@ -72,3 +76,14 @@ class FrontEndValidator:
             return False
         else:
             return True
+
+    def checkValidTransactionSummary(self, transactionCode, firstAccount, secondAccount, amount, accountName):
+        if len(" ".join([transactionCode, firstAccount, secondAccount, amount, accountName])) > maxLineLengthWithoutNewline:
+            return False
+        if not self.isValidAccountNameToCreate(accountName):
+            return False
+        #if not self.isValidAccountNumberToCreate(firstAccount, isTransactionCheck=True):
+        #    return False
+        #if not self.isValidAccountNumberToCreate(secondAccount, isTransactionCheck=True):
+        #    return False
+        return True
