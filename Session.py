@@ -1,3 +1,4 @@
+from ValidAccounts import ValidAccounts
 class Session:
 
 	def __init__(self, userInput):
@@ -11,9 +12,11 @@ class Session:
 			if userInput.strip() == "agent":
 				self.admin = False
 				self.isReady = True
+				self.accounts = ValidAccounts()
 			elif userInput.strip() == "atm" :
 				self.admint = True
 				self.isReady = True
+				self.accounts = ValidAccounts()
 		else:
 			print "You must log in using 'login' command"
 		

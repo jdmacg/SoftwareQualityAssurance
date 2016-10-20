@@ -7,7 +7,7 @@ while True:
 	session = Session(userInput)
 	if session.isReady is True:
 		break
-
+print("Welcome!")
 
 
 while userInput != "logout":
