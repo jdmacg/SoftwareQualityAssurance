@@ -49,13 +49,12 @@ class Session:
 		if self.admin is False:
 			print "Not running as atm mode!"
 
-
 	def checkValidAmount(self,amount):
 		if self.admin == 1 and amount < 99999999 and amount > 0 and len(str(amount)) >= 3 and len(str(amount)) <= 8:
 			return 1
 		else:
 			return 0
-		if self.admin == 0 and amount < 1000 and amount > 0 and len(str(amount)) >= 3 and len(str(amount)) <= 8:
+		if self.admin == 0 and amount < 100000 and amount > 0 and len(str(amount)) >= 3 and len(str(amount)) <= 8:
 			return 1
 		else:
 			return 0
