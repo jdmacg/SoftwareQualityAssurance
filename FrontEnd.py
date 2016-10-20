@@ -11,7 +11,7 @@ while True:
 
 
 while userInput != "logout":
-	userInput = raw_input("Enter a command : ")
+	userInput = session.getInput()
 	session.runCommand(userInput)
 
 

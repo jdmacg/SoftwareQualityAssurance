@@ -3,32 +3,48 @@ class Session:
 	def __init__(self, userInput):
 		self.admin = None
 		self.isReady = False
-		if userInput.strip() == "login":
+		if userInput == "login":
 
-			while userInput.strip() != "agent" and userInput.strip() != "atm":
-				userInput = raw_input("Enter a command : ")
-				if userInput.strip() != "agent" and userInput.strip() != "atm":
+			while userInput != "agent" and userInput != "atm":
+				userInput = self.getInput()
+
+				if userInput != "agent" and userInput != "atm":
 					print "Please enter 'atm' or 'agent'"
-			if userInput.strip() == "agent":
+			if userInput == "agent":
 				self.admin = False
 				self.isReady = True
-			elif userInput.strip() == "atm" :
+			elif userInput == "atm" :
 				self.admint = True
 				self.isReady = True
 		else:
 			print "You must log in using 'login' command"
 		
 	def runCommand(self,userInput):
-		if userInput == "create" and self.admin == 1:
+		if userInput == "create":
 			userInput = raw_input("Enter account number")
-		elif userInput == "delete" and self.admin == 1:
-			print("hi")
+		elif userInput == "delete":
+			print "call delete function"
 		elif userInput == "deposit":
-			print("hi")
+			print "call deposit function"
 		elif userInput == "withdraw":
-			print("hi")
+			print "call withdraw function"
 		elif userInput == "transfer":
-			print("hi")
+			print "call trasnfer function"
+		else:
+			print "Not a valid command"
+
+	def getInput(self):
+		userInput = raw_input("Enter a command : ")
+		if len(userInput) > 0:
+			return userInput
+		else:
+			print "Command cannot be length 0"
+		return ""
+
+	def delete(self, userInput):
+		if self.admin is False:
+			print "Not running as atm mode!"
+
 
 	def checkValidAmount(self,amount):
 		if self.admin == 1 and amount < 99999999 and amount > 0 and len(str(amount)) >= 3 and len(str(amount)) <= 8:
