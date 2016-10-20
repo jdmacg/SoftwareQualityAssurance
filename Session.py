@@ -4,7 +4,6 @@ class Session:
 		self.admin = None
 		self.isReady = False
 		if userInput.strip() == "login":
-
 			while userInput.strip() != "agent" and userInput.strip() != "atm":
 				userInput = raw_input("Enter a command : ")
 				if userInput.strip() != "agent" and userInput.strip() != "atm":
