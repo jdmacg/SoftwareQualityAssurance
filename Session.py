@@ -2,8 +2,15 @@ import pdb
 from FrontEndValidator import FrontEndValidator
 from ValidAccounts import ValidAccounts
 from Transactions import Transactions
+#The session class represents a logged in session for simbank, on creation of the class
+#there exists a transaction record, the valid accounts class, if the current class of session is an admin
+#if the current session is ready (i.e logged in, not logged off), and if the current session is logged in
+#this class contains all of the necessary calls to complete the availablec ommands exisiting in simbank
 class Session:
-
+	#Inputs: User input (the command, ideally "login"), name of the valid account file, name of the transaction file
+	#outputs: None
+	#description: initilazes half of the class variables, and then checks that user logs in properly before finishing
+	#the class setup, as well before accepting any other commands
 	def __init__(self, userInput, accountFile, transactionFile):
 		self.transactionRecords = Transactions(transactionFile)
 		self.frontEndValidator = FrontEndValidator()
@@ -26,7 +33,10 @@ class Session:
 		else:
 			print "You must log in using 'login' command"
 
-		
+	#inputs: User input (command the user entered
+	#outputs: None
+	#description: A large if statement with all of the command cases, given one of the valid commands calls the necessary
+	#method to execute the command
 	def runCommand(self,userInput):
 		if userInput == "create":
 			self.create()
@@ -43,7 +53,9 @@ class Session:
 			self.transactionRecords.writeTransactonFile()
 		else:
 			print "Not a valid command"
-
+	#Inputs: none (print statement is always "")
+	#outputs: a string of a command, or an empty string if the user does not enter a command
+	#description: Receieves raw input from the user so that the user can use simbank
 	def getInput(self, printStatement=""):
 		if len(printStatement) == 0:
 			printStatement = "Enter a command : "
@@ -54,6 +66,11 @@ class Session:
 			print "Command cannot be length 0"
 		return ""
 
+	#inputs: none
+	#outputs: none
+	#description: Called when the "delete" command is inputted, the method checks if the session is in admin mode,
+	#and rejects the command if it is in atm mode, the program then recieves user input for the account number and name
+	#and then calls another function to process the information
 	def delete(self):
 		if self.admin is False:
 			print "Not running as atm mode!"
@@ -62,7 +79,10 @@ class Session:
 			accountName = self.getInput("Please enter account name: ")
 			self.validAccount.deleteAccount(accountNumber, accountName)
 
-
+	#inputs: none
+	#outputs: none
+	#description: gets user account number and name to be added, then calls other methods to check the data, if the data
+	#fits the requirements then the account is created with another method that is called
 	def create(self):
 		accountNumber = self.getInput("Please enter account number: ")
 		accountName = self.getInput("Please enter account name: ")
@@ -70,7 +90,10 @@ class Session:
 		if self.frontEndValidator.isValidAccountNumberToCreate(accountNumber) and \
 			self.frontEndValidator.isValidAccountNameToCreate(accountName):
 				self.validAccount.createAccount(accountName, accountNumber )
-
+	#inputs : none
+	#outputs : none
+	#description: gets account to be withdrawn from, and the ammount to be withdrawn. Throughout the method
+	#various other methods are called to check that the data entered is valid
 	def withdraw(self):
 		accountNumber = self.getInput("Enter account number to withdraw from: ")
 		if not self.frontEndValidator.checkValidAccount(self.validAccount.validAccounts, self.validAccount.invalidAccounts, accountNumber):
@@ -81,7 +104,10 @@ class Session:
 			print "invalid amount requested"
 		else:
 			self.validAccount.withdrawAmount(accountNumber, int(requestedAmount))
-
+	#inputs: none
+	#outputs; none
+	#description: Asks for the account number to deposist to and the amount to deposist. throughout the method various other
+	#methods are called to check that the data is valid
 	def deposit(self):
 		accountNumber = self.getInput("Enter account number to deposit to: ")
 		if not self.frontEndValidator.checkValidAccount(self.validAccount.validAccounts, self.validAccount.invalidAccounts, accountNumber):
@@ -92,7 +118,10 @@ class Session:
 			print "invalid amount requested"
 		else:
 			print "Amount $" + str(requestedAmount)[:-2] + "." + str(requestedAmount)[-2:] + " has been deposited"
-
+	# inputs: none
+	# outputs; none
+	# description: Asks for the account number to transfer from then the account number to trabsfer ti and the amount to transfer. throughout the method various other
+	# methods are called to check that the data is valid
 	def transfer(self):
 		accountNumberFrom = self.getInput("Enter account number to transfer from: ")
 		if not self.frontEndValidator.checkValidAccount(self.validAccount.validAccounts, self.validAccount.invalidAccounts, accountNumberFrom):
