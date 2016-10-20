@@ -4,7 +4,6 @@ from Transactions import Transactions
 class Session:
 
 	def __init__(self, userInput, accountFile, transactionFile):
-		self.validAccount = ValidAccounts(accountFile)
 		self.transactionRecords = Transactions(transactionFile)
 		self.admin = None
 		self.isReady = False
@@ -14,6 +13,7 @@ class Session:
 				userInput = self.getInput()
 				if userInput != "agent" and userInput != "atm":
 					print "Please enter 'atm' or 'agent'"
+			self.validAccount = ValidAccounts(accountFile)
 			if userInput == "agent":
 				self.admin = True
 				self.isReady = True
@@ -22,6 +22,7 @@ class Session:
 				self.isReady = True
 		else:
 			print "You must log in using 'login' command"
+
 		
 	def runCommand(self,userInput):
 		if userInput == "create":
@@ -29,11 +30,11 @@ class Session:
 		elif userInput == "delete":
 			self.delete()
 		elif userInput == "deposit":
-			print "call deposit function"
+			self.deposit()
 		elif userInput == "withdraw":
 			self.withdraw()
 		elif userInput == "transfer":
-			print "call trasnfer function"
+			self.transfer()
 		else:
 			print "Not a valid command"
 
@@ -68,10 +69,39 @@ class Session:
 		accountNumber = self.getInput("Enter account number to withdraw from")
 		if not self.validAccount.checkValidAccount(accountNumber):
 			print accountNumber, " is an invalid account number"
-			accountNumber = self.getInput("Enter account number to withdraw from")
+			return
 		requestedAmount = self.getInput("Enter amount to withdraw")
 		if not self.validAccount.checkWithdrawAmount(int(requestedAmount) ,accountNumber,self.admin):
 			print "invalid amount requested"
 		else:
 			self.validAccount.withdrawAmount(accountNumber, int(requestedAmount))
 
+	def deposit(self):
+		accountNumber = self.getInput("Enter account number to deposit to")
+		if not self.validAccount.checkValidAccount(accountNumber):
+			print accountNumber, " is an invalid account number"
+			return
+		requestedAmount = self.getInput("Enter amount to deposit")
+		if not self.validAccount.checkValidAmount(self.admin, (int(requestedAmount))):
+			print "invalid amount requested"
+		else:
+			print "Amount $" + requestedAmount + " has been deposited"
+
+	def transfer(self):
+		accountNumberFrom = self.getInput("Enter account number to transfer from")
+		if not self.validAccount.checkValidAccount(accountNumberFrom):
+			print accountNumberFrom, " is an invalid account number"
+			return
+		accountNumberTo= self.getInput("Enter account number to transfer to")
+		if not self.validAccount.checkValidAccount(accountNumberTo):
+			print accountNumberTo, " is an invalid account number"
+			return
+		if accountNumberTo == accountNumberFrom:
+			print "The account number entered is the same"
+			return
+		requestedAmount = self.getInput("Enter amount to Transfer")
+		if not self.validAccount.checkWithdrawAmount(int(requestedAmount), accountNumberFrom, self.admin):
+			print "invalid amount requested"
+		else:
+			self.validAccount.withdrawAmount(accountNumberFrom, int(requestedAmount))
+			print "Amount $" + requestedAmount + " has been transferred to " + accountNumberTo
