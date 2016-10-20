@@ -1,4 +1,5 @@
 class Session:
+
 	def __init__(self, userInput):
 		self.admin = None
 		self.isReady = False
@@ -29,13 +30,12 @@ class Session:
 		elif userInput == "transfer":
 			print("hi")
 
-
 	def checkValidAmount(self,amount):
 		if self.admin == 1 and amount < 99999999 and amount > 0 and len(str(amount)) >= 3 and len(str(amount)) <= 8:
 			return 1
 		else:
 			return 0
-		if self.admin == 0 and amount < 1000 and amount > 0:
+		if self.admin == 0 and amount < 1000 and amount > 0 and len(str(amount)) >= 3 and len(str(amount)) <= 8:
 			return 1
 		else:
 			return 0
