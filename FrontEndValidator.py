@@ -1,6 +1,8 @@
 import pdb
 maxLineLengthWithoutNewline = 59
 
+#this class contains all the checks for various transactions as described in the handout
+
 class FrontEndValidator:
     #inputs: isAdmin (is the current session admin), amount to check if valid
     #outputs: True/false, true if the amount is valid
