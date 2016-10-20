@@ -1,10 +1,25 @@
 class Session:
-	def __init__(self,isAdmin):
-		self.admin = isAdmin
+	def __init__(self, userInput):
+		self.admin = None
+		self.isReady = False
+		if userInput.strip() == "login":
+
+			while userInput.strip() != "agent" and userInput.strip() != "atm":
+				userInput = raw_input("Enter a command : ")
+				if userInput.strip() != "agent" and userInput.strip() != "atm":
+					print "Please enter 'atm' or 'agent'"
+			if userInput.strip() == "agent":
+				self.admin = False
+				self.isReady = True
+			elif userInput.strip() == "atm" :
+				self.admint = True
+				self.isReady = True
+		else:
+			print "You must log in using 'login' command"
 		
-	def command(self,userInput):
+	def runCommand(self,userInput):
 		if userInput == "create" and self.admin == 1:
-			userInput = input("Enter account number")
+			userInput = raw_input("Enter account number")
 		elif userInput == "delete" and self.admin == 1:
 			print("hi")
 		elif userInput == "deposit":
@@ -13,17 +28,8 @@ class Session:
 			print("hi")
 		elif userInput == "transfer":
 			print("hi")
-	
-	
-	def logInPage(userInput):
-		while userInput != "agent" and userInput != "atm":
-			while userInput != "login":
-				userInput = input("Enter a command : ")
-			userInput = input("Which mode : ")	
-			if userInput == "agent":
-				return Session(1)
-			else:
-				return Session(0)
+
+
 	def checkValidAmount(self,amount):
 		if self.admin == 1 and amount < 99999999 and amount > 0 and len(str(amount)) >= 3 and len(str(amount)) <= 8:
 			return 1

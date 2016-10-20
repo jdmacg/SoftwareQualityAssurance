@@ -1,12 +1,17 @@
 #the main file of the front end
 from Session import Session
-userInput = "doesntMatter"
 
-newSession = Session.logInPage(input("Enter a command : "))
-print("Welcome")
+
+while True:
+	userInput = raw_input("Enter a command : ")
+	session = Session(userInput)
+	if session.isReady is True:
+		break
+
+
 
 while userInput != "logout":
-	userInput = input("Enter a command : ")
-	newSession.command(userInput)
+	userInput = raw_input("Enter a command : ")
+	session.runCommand(userInput)
 
 
