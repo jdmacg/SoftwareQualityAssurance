@@ -54,7 +54,7 @@ class ValidAccounts:
         if isAdmin == False:
             if withdrawAmount > 100000:
                 return False
-            temp = withdrawAmount + self.amountWithdrawn[accountNumber];
+            temp = withdrawAmount + self.amountWithdrawn[accountNumber]
             if temp < 100000:
                 print "Amount" + str(withdrawAmount) + " sucessfully withdrawn"
             else:
@@ -62,13 +62,38 @@ class ValidAccounts:
                 return False
         return True
 
+    def createAccount(self, accountName, accountNumber):
+        self.createdAccounts[accountNumber] = accountName
+
+    def isValidAccountNumberToCreate(self, accountNumber):
+        if len(str(accountNumber)) != 8:
+            print "Must be exactly 8 digits"
+            return False
+        elif str(accountNumber)[0] == "0":
+            print "Numbers cannot start with 0"
+            return False
+        if self.checkValidAccount(accountNumber) == True:
+            print "Account number already exists"
+            return False
+        else:
+            return True
+
+    def isValidAccountNameToCreate(self, accountName):
+        if accountName[0] == " " or accountName[-1] == " ":
+            print "Account name cannot start or end with a space"
+            return False
+        elif len(accountName) > 30 or len(accountName) < 3:
+            print "Account name must be between 3-30 digits"
+            return False
+        else:
+            return True
 
     def withdrawAmount(self,accountNumber,amount):
         self.amountWithdrawn[accountNumber] += amount;
 
     def deleteAccount(self, accountNumber, accountName):
-        for i in self.validAccounts:
-            if i == accountNumber:
+        for i in range(len(self.validAccounts)):
+            if self.validAccounts[i] == accountNumber:
                 del self.validAccounts[i]
                 print "Account deleted"
                 self.invalidAccounts[accountNumber] = accountName

@@ -25,9 +25,9 @@ class Session:
 		
 	def runCommand(self,userInput):
 		if userInput == "create":
-			userInput = raw_input("Enter account number")
+			self.create()
 		elif userInput == "delete":
-			print "call delete function"
+			self.delete()
 		elif userInput == "deposit":
 			print "call deposit function"
 		elif userInput == "withdraw":
@@ -47,31 +47,22 @@ class Session:
 			print "Command cannot be length 0"
 		return ""
 
-	def delete(self, userInput):
+	def delete(self):
 		if self.admin is False:
 			print "Not running as atm mode!"
-
-	"""def createAccount(self, accountNumber, accountName):
-        if len(str(accountNumber)) != 8:
-            print "Must be exactly 8 digits"
-            return False
-        elif str(accountNumber)[0] == "0":
-            print "Numbers cannot start with 0"
-            return False
-        elif len(accountName) > 30 or len(accountName) < 3:
-            print "Account name must be between 3-30 digits"
-            return False
-        elif accountName[0] == " " or accountName[len(accountName)] == " ":
-            print "Account name cannot start or end with a space"
-            return False
-        if self.checkValidAccount(accountNumber) == True:
-            print "Account number already exists"
-            return False
-        else:
-            self.createdAccounts[accountNumber] = accountName
-            return True"""
+		else:
+			accountNumber = self.getInput("Please enter account number: ")
+			accountName = self.getInput("Please enter account name: ")
+			self.validAccount.deleteAccount(accountNumber, accountName)
 
 
+	def create(self):
+		accountNumber = self.getInput("Please enter account number: ")
+		accountName = self.getInput("Please enter account name: ")
+
+		if self.validAccount.isValidAccountNumberToCreate(accountNumber) and \
+			self.validAccount.isValidAccountNameToCreate(accountName):
+				self.validAccount.createAccount(accountName, accountNumber )
 
 	def withdraw(self):
 		accountNumber = self.getInput("Enter account number to withdraw from")
@@ -82,6 +73,5 @@ class Session:
 		if not self.validAccount.checkWithdrawAmount(int(requestedAmount) ,accountNumber,self.admin):
 			print "invalid amount requested"
 		else:
-
 			self.validAccount.withdrawAmount(accountNumber, int(requestedAmount))
 
