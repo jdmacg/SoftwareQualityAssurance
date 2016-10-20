@@ -1,24 +1,24 @@
+import pdb
 from ValidAccounts import ValidAccounts
+from Transactions import Transactions
 class Session:
 
 	def __init__(self, userInput, accountFile, transactionFile):
-	    self.validAccount = ValidAccounts(accountFile)
-	    self.transactionRecords = Transactions(transactionFile)
+		self.validAccount = ValidAccounts(accountFile)
+		self.transactionRecords = Transactions(transactionFile)
 		self.admin = None
 		self.isReady = False
-		
-		if userInput == "login":
-		#self.amount = 0
 
+		if userInput == "login":
 			while userInput != "agent" and userInput != "atm":
 				userInput = self.getInput()
 				if userInput != "agent" and userInput != "atm":
 					print "Please enter 'atm' or 'agent'"
 			if userInput == "agent":
-				self.admin = False
+				self.admin = True
 				self.isReady = True
 			elif userInput == "atm" :
-				self.admint = True
+				self.admin = False
 				self.isReady = True
 		else:
 			print "You must log in using 'login' command"
@@ -31,14 +31,16 @@ class Session:
 		elif userInput == "deposit":
 			print "call deposit function"
 		elif userInput == "withdraw":
-			print "call withdraw function"
+			self.withdraw()
 		elif userInput == "transfer":
 			print "call trasnfer function"
 		else:
 			print "Not a valid command"
 
-	def getInput(self):
-		userInput = raw_input("Enter a command : ")
+	def getInput(self, printStatement=""):
+		if len(printStatement) == 0:
+			printStatement = "Enter a command : "
+		userInput = raw_input(printStatement)
 		if len(userInput) > 0:
 			return userInput
 		else:
@@ -49,33 +51,37 @@ class Session:
 		if self.admin is False:
 			print "Not running as atm mode!"
 
-	def checkValidAmount(self,amount):
-		if self.admin == 1 and amount < 99999999 and amount > 0 and len(str(amount)) >= 3 and len(str(amount)) <= 8:
-			return 1
-		else:
-			return 0
-		if self.admin == 0 and amount < 100000 and amount > 0 and len(str(amount)) >= 3 and len(str(amount)) <= 8:
-			return 1
-		else:
-			return 0
-			
-    def withdraw(self):
-        accountNumber = self.getInput("Enter account number to withdraw from")
-        while not self.validAccount.checkAccount(accountNumber): 
-            print accountNumber, " is an invalid account number
-            accountNumber = self.getInput("Enter account number to withdraw from")
-        requestedAmount = self.getInput("Enter amount to withdraw")
-        if not self.validAccount.checkWithdrawAmount(requestedAmount,accountNumber,self.admin):
-            print "invalid amount requested"
+	"""def createAccount(self, accountNumber, accountName):
+        if len(str(accountNumber)) != 8:
+            print "Must be exactly 8 digits"
+            return False
+        elif str(accountNumber)[0] == "0":
+            print "Numbers cannot start with 0"
+            return False
+        elif len(accountName) > 30 or len(accountName) < 3:
+            print "Account name must be between 3-30 digits"
+            return False
+        elif accountName[0] == " " or accountName[len(accountName)] == " ":
+            print "Account name cannot start or end with a space"
+            return False
+        if self.checkValidAccount(accountNumber) == True:
+            print "Account number already exists"
+            return False
         else:
-            self.validAccount.withdrawAmount(requestedAmount,accountNumber)
-            
-            
-            
-        
-        
-            
-        
-            
-        
-        
+            self.createdAccounts[accountNumber] = accountName
+            return True"""
+
+
+
+	def withdraw(self):
+		accountNumber = self.getInput("Enter account number to withdraw from")
+		if not self.validAccount.checkValidAccount(accountNumber):
+			print accountNumber, " is an invalid account number"
+			accountNumber = self.getInput("Enter account number to withdraw from")
+		requestedAmount = self.getInput("Enter amount to withdraw")
+		if not self.validAccount.checkWithdrawAmount(int(requestedAmount) ,accountNumber,self.admin):
+			print "invalid amount requested"
+		else:
+
+			self.validAccount.withdrawAmount(accountNumber, int(requestedAmount))
+

@@ -1,9 +1,10 @@
 import fileinput
+import pdb
 class ValidAccounts:
 
     def __init__(self, fileName):
         self.validAccounts = []
-        self.ammountWithdrawn = dict()
+        self.amountWithdrawn = dict()
         self.createdAccounts = dict()
         self.invalidAccounts = dict()
         f = open(fileName,"r")
@@ -24,6 +25,7 @@ class ValidAccounts:
             print("Throw an error, the valid accounts file is not proper")
         else:
             print("Valid accounts file has been sucessfully loaded.")
+
     def checkValidAccount(self, accountChecking):
         for key in self.invalidAccounts:
             if accountChecking == key:
@@ -33,36 +35,36 @@ class ValidAccounts:
                 return True
         return False
 
-    def withdrawAmount(self,accountNumber,amount):
-        if self.admin == False:
-            temp = amount + self.amountWithdrawn[accountNumber];
+    def checkValidAmount(self, isAdmin, amount):
+        if isAdmin == True:
+            if amount < 99999999 and amount > 0 and len(str(amount)) >= 3 and len(str(amount)) <= 8:
+                return True
+            else:
+                return False
+        if isAdmin == False:
+            if amount < 100000 and amount > 0 and len(str(amount)) >= 3 and len(str(amount)) <= 8:
+                return True
+            else:
+                return False
+
+
+    def checkWithdrawAmount(self, withdrawAmount, accountNumber , isAdmin):
+        if not self.checkValidAmount(isAdmin, withdrawAmount):
+            return False
+        if isAdmin == False:
+            if withdrawAmount > 100000:
+                return False
+            temp = withdrawAmount + self.amountWithdrawn[accountNumber];
             if temp < 100000:
-                print "Amount" + amount + " sucessfully withdrawn"
+                print "Amount" + str(withdrawAmount) + " sucessfully withdrawn"
             else:
                 print "You have exceeded the amount allowed to withdrawn in the session"
                 return False
-        self.ammountWithdrawn[accountNumber] += amount;
         return True
 
-    def createAccount(self, accountNumber, accountName):
-        if len(str(accountNumber)) != 8:
-            print "Must be exactly 8 digits"
-            return False
-        elif str(accountNumber)[0] == "0":
-            print "Numbers cannot start with 0"
-            return False
-        elif len(accountName) > 30 or len(accountName) < 3:
-            print "Account name must be between 3-30 digits"
-            return False
-        elif accountName[0] == " " or accountName[len(accountName)] == " ":
-            print "Account name cannot start or end with a space"
-            return False
-        if self.checkValidAccount(accountNumber) == True:
-            print "Account number already exists"
-            return False
-        else:
-            self.createdAccounts[accountNumber] = accountName
-            return True
+
+    def withdrawAmount(self,accountNumber,amount):
+        self.amountWithdrawn[accountNumber] += amount;
 
     def deleteAccount(self, accountNumber, accountName):
         for i in self.validAccounts:
