@@ -1,7 +1,8 @@
 from Directories import Directories
 import os
 import sys
-sys.path.insert(0, Directories.frontendSourceDir)
+import subprocess as sub
+#sys.path.insert(0, Directories.frontendSourceDir)
 #import FrontEnd
 
 class FrontEndTestSuite:
@@ -20,6 +21,10 @@ class FrontEndTestSuite:
 
 frontEndTestSuite = FrontEndTestSuite()
 ex = frontEndTestSuite.directories.frontendSourceDir + frontEndTestSuite.directories.slash + "FrontEnd.py"
-print ex
-os.system(ex)
-
+#print ex
+#os.system(ex)
+#p = os.popen("python " + ex, "r")
+#p = sub.Popen(["python " + ex], stdout=sub.PIPE, stderr=sub.PIPE)
+#output, errors = p.communicate()
+#print output
+sub.call(['ls', '-l'], shell=True)

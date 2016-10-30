@@ -45,4 +45,4 @@ class Directories:
     def getTestExpectedDir(self, testPath):
         return self.testPath + self.slash + "ExpectedOutputs"
 
-print Directories.sourceDir
+
