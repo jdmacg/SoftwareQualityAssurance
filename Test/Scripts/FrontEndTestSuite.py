@@ -17,3 +17,9 @@ class FrontEndTestSuite:
         modules = [self.directories.frontendModulesDir + "\\" + module for module in modules if '.' not in module]
         return modules
 
+
+frontEndTestSuite = FrontEndTestSuite()
+ex = frontEndTestSuite.directories.frontendSourceDir + frontEndTestSuite.directories.slash + "FrontEnd.py"
+print ex
+os.system(ex)
+

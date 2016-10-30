@@ -1,20 +1,25 @@
 import os.path
 import datetime
+import sys
+
 
 
 class Directories:
 
-    scriptsDir = os.path.dirname(os.path.realpath(__file__))
-    testDir = os.path.dirname(scriptsDir)
-    rootDir = os.path.dirname(testDir)
-    sourceDir = rootDir + "\Source"
-    frontendSourceDir = sourceDir + "\FrontEnd"
-    frontendTestDir = testDir + "\FrontEnd"
-    frontendModulesDir = frontendTestDir + "\Modules"
-    frontendOutputDir = frontendTestDir + "\Outputs"
-
     def __init__(self):
         self.numTestRuns = 0
+        self.slash = "/"
+        if sys.platform == "win32":
+            self.slash = "\\"
+        self.scriptsDir = os.path.dirname(os.path.realpath(__file__))
+        self.testDir = os.path.dirname(self.scriptsDir)
+        self.rootDir = os.path.dirname(self.testDir)
+        self.sourceDir = self.rootDir + self.slash + "Source"
+        self.frontendSourceDir = self.sourceDir + self.slash + "FrontEnd"
+        self.frontendTestDir = self.testDir + self.slash + "FrontEnd"
+        self.frontendModulesDir = self.frontendTestDir + self.slash + "Modules"
+        self.frontendOutputDir = self.frontendTestDir + self.slash + "Outputs"
+
 
     def createTestDirectory(self, isFrontEnd=True):
         testOutputName = "TestOutput_"
@@ -35,7 +40,9 @@ class Directories:
         return testOutputPath
 
     def getTestInputDir(self, testPath):
-        return self.testPath + "\Inputs"
+        return self.testPath + self.slash + "Inputs"
 
     def getTestExpectedDir(self, testPath):
-        return self.testPath + "\ExpectedOutputs"
+        return self.testPath + self.slash + "ExpectedOutputs"
+
+print Directories.sourceDir
