@@ -8,26 +8,56 @@ The program is intended to be ran with a text file "ValidAccounts.txt", and is i
 pipelined a textfile through the terminal as long as the commands are correct the program will also run as intended.
 """
 from Session import Session
+import os
 
 import sys
 accountsIndex = 1
 transactionIndex = 2
+testFileIndex = 3
 
 #accountsFile = open(sys.argv[accountsIndex])
 #transactionFile = open(sys.argv[transactionIndex])
 transactionFile = "TransactionSummary.txt"
 accountsFile = "ValidAccounts.txt"
+testFile = ""
 
-#until a logon is sucessful the following loop will continue to run
-while True:
-	userInput = raw_input("Enter a command : ")
-	session = Session(userInput, accountsFile, transactionFile)
-	if session.isReady is True:
-		break
-print("Welcome!")
+runFromTextFile = False
+if len(sys.argv) > 1:
+	runFromTextFile = True
 
-#until the user gives the logout command the following loop for inputs will be run
-while session.isLoggedIn is True:
-	userInput = session.getInput()
-	session.runCommand(userInput)
+if runFromTextFile:
+	#until a logon is sucessful the following loop will continue to run
+	while True:
+		userInput = raw_input("Enter a command : ")
+		session = Session(userInput, accountsFile, transactionFile)
+		if session.isReady is True:
+			break
+	print("Welcome!")
+
+	#until the user gives the logout command the following loop for inputs will be run
+	while session.isLoggedIn is True:
+		userInput = session.getInput()
+		session.runCommand(userInput)
+
+else:
+	testFile = open(sys.argv[1])
+	testData = testFile.readlines()
+	print testData
+	lineIdx = 0
+	while True:
+		print "Enter a command : "
+		userInput = testData[lineIdx]
+		lineIdx += 1
+		session = Session(userInput, accountsFile, transactionFile)
+		if session.isReady is True:
+			break
+	print("Welcome!")
+
+	while session.isLoggedIn is True:
+		userInput = session.getInput(testData[lineIdx])
+		lineIdx += 1
+		session.runCommand(userInput)
+
+
+
 

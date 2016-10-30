@@ -19,7 +19,8 @@ class Directories:
         self.frontendTestDir = self.testDir + self.slash + "FrontEnd"
         self.frontendModulesDir = self.frontendTestDir + self.slash + "Modules"
         self.frontendOutputDir = self.frontendTestDir + self.slash + "Outputs"
-
+        self.frontEndProgram = self.frontendSourceDir + self.slash + "FrontEnd.py"
+        self.runScript = self.scriptsDir + self.slash + "RunScript.sh"
 
     def createTestDirectory(self, isFrontEnd=True):
         testOutputName = "TestOutput_"
@@ -40,9 +41,7 @@ class Directories:
         return testOutputPath
 
     def getTestInputDir(self, testPath):
-        return self.testPath + self.slash + "Inputs"
+        return testPath + self.slash + "Inputs"
 
     def getTestExpectedDir(self, testPath):
-        return self.testPath + self.slash + "ExpectedOutputs"
-
-print Directories.sourceDir
+        return testPath + self.slash + "ExpectedOutputs"

@@ -65,10 +65,13 @@ class Session:
 	#Inputs: none (print statement is always "")
 	#outputs: a string of a command, or an empty string if the user does not enter a command
 	#description: Receieves raw input from the user so that the user can use simbank
-	def getInput(self, printStatement=""):
+	def getInput(self, printStatement="", textInput = ""):
 		if len(printStatement) == 0:
 			printStatement = "Enter a command : "
-		userInput = raw_input(printStatement)
+		if len(textInput) > 0:
+			userInput = textInput
+		else:
+			userInput = raw_input(printStatement)
 		if len(userInput) > 0:
 			return userInput
 		else:
