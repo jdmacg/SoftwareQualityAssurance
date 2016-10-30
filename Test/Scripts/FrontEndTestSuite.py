@@ -2,6 +2,7 @@ from Directories import Directories
 import os
 import subprocess as sub
 import sys
+import subprocess as sub
 #sys.path.insert(0, Directories.frontendSourceDir)
 #import FrontEnd
 
@@ -32,11 +33,8 @@ class FrontEndTestSuite:
 
 
 frontEndTestSuite = FrontEndTestSuite()
-
 print frontEndTestSuite.directories.frontEndProgram
 modules = frontEndTestSuite.getModulesToTest()
 testFiles = frontEndTestSuite.getTestInputFiles(modules[0])
 print testFiles[0]
 print frontEndTestSuite.runTest(testFiles[0])
-
-

@@ -1,4 +1,4 @@
-"""The front end of simbank
+'''The front end of simbank
 The intention of this program is to ensure that users input proper values into the simbank application
 If a user attempts to input incorrect values, or access commands they do not have the privillage to,
 the program will stop them. The program requires an input of a valid accounts list, which is read on a sucessful logon
@@ -6,7 +6,7 @@ and then lines of text can be inputted into the program. The program outputs a d
 all of the transactions that were executed within a session.
 The program is intended to be ran with a text file "ValidAccounts.txt", and is intended to user terminal input, but if
 pipelined a textfile through the terminal as long as the commands are correct the program will also run as intended.
-"""
+'''
 from Session import Session
 import os
 
