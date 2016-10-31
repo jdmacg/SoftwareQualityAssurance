@@ -2,6 +2,7 @@ import pdb
 from FrontEndValidator import FrontEndValidator
 from ValidAccounts import ValidAccounts
 from Transactions import Transactions
+import os
 #The session class represents a logged in session for simbank, on creation of the class
 #there exists a transaction record, the valid accounts class, if the current class of session is an admin
 #if the current session is ready (i.e logged in, not logged off), and if the current session is logged in
@@ -20,25 +21,30 @@ class Session:
 	#outputs: None
 	#description: initilazes half of the class variables, and then checks that user logs in properly before finishing
 	#the class setup, as well before accepting any other commands
-	def __init__(self, userInput, accountFile, transactionFile):
+	def __init__(self, userInput, accountFile, transactionFile, isRunningFromFile=False):
 		self.transactionRecords = Transactions(transactionFile)
 		self.frontEndValidator = FrontEndValidator()
 		self.admin = None
 		self.isReady = False
 		self.isLoggedIn = True
-
-		if userInput == "login":
-			while userInput != "agent" and userInput != "atm":
-				userInput = self.getInput()
-				if userInput != "agent" and userInput != "atm":
+                cmdIdx = 1
+                userInput = [command.strip() for command in userInput]                
+                
+		if userInput[0] == "login":
+			while userInput[cmdIdx] != "agent" and userInput[cmdIdx] != "atm":
+                                if not isRunningFromFile:
+                                    userInput[cmdIdx] = self.getInput()                                      
+				if userInput[cmdIdx] != "agent" and userInput[cmdIdx] != "atm":
 					print "Please enter 'atm' or 'agent'"
-			self.validAccount = ValidAccounts(accountFile)
-			if userInput == "agent":
+                        self.validAccount = ValidAccounts(accountFile)
+			if userInput[cmdIdx] == "agent":
 				self.admin = True
 				self.isReady = True
-			elif userInput == "atm" :
+			elif userInput[cmdIdx] == "atm" :
 				self.admin = False
 				self.isReady = True
+                        if isRunningFromFile:
+                            cmdIdx += 1
 		else:
 			print "You must log in using 'login' command"
 
@@ -65,7 +71,7 @@ class Session:
 	#Inputs: none (print statement is always "")
 	#outputs: a string of a command, or an empty string if the user does not enter a command
 	#description: Receieves raw input from the user so that the user can use simbank
-	def getInput(self, printStatement="", textInput = ""):
+	def getInput(self, printStatement="", textInput=""):
 		if len(printStatement) == 0:
 			printStatement = "Enter a command : "
 		if len(textInput) > 0:

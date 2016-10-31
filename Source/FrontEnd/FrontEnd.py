@@ -24,8 +24,8 @@ testFile = ""
 runFromTextFile = False
 if len(sys.argv) > 1:
 	runFromTextFile = True
-
-if runFromTextFile:
+print "run from text file", runFromTextFile
+if not runFromTextFile:
 	#until a logon is sucessful the following loop will continue to run
 	while True:
 		userInput = raw_input("Enter a command : ")
@@ -40,24 +40,33 @@ if runFromTextFile:
 		session.runCommand(userInput)
 
 else:
+        print "running from text file!"
+        oldWorkingDir = os.path.dirname(os.path.realpath(__file__))
+        newWorkingDir = os.path.dirname(os.path.realpath(__file__))
+        os.chdir(newWorkingDir)
 	testFile = open(sys.argv[1])
-	testData = testFile.readlines()
-	print testData
-	lineIdx = 0
+	commands = testFile.readlines()
+        commands = [command.strip() for command in commands]
+        lineIdx = 0
 	while True:
 		print "Enter a command : "
-		userInput = testData[lineIdx]
-		lineIdx += 1
-		session = Session(userInput, accountsFile, transactionFile)
+		if lineIdx >= len(commands):
+                    break
+                session = Session(commands[lineIdx:], accountsFile, transactionFile, isRunningFromFile=True)
+                lineIdx += 1
 		if session.isReady is True:
 			break
-	print("Welcome!")
+	print "Welcome!"
 
+        lineIdx += 1
 	while session.isLoggedIn is True:
-		userInput = session.getInput(testData[lineIdx])
+                print commands[lineIdx]
+                if lineIdx >= len(commands):
+                    break
+		userInput = session.getInput(textInput=commands[lineIdx])
 		lineIdx += 1
 		session.runCommand(userInput)
-
+        os.chdir(oldWorkingDir)
 
 
 

@@ -17,8 +17,11 @@ class FrontEndTestSuite:
         return commands'''
 
     def runTest(self, testFile):
-        scriptOutput = sub.check_output([self.directories.runScript, testFile])
-        return scriptOutput
+        print self.directories.frontEndProgram
+        print testFile
+        sub.call([self.directories.runScript, self.directories.frontEndProgram, testFile])
+        #scriptOutput = sub.check_output([self.directories.runScript, testFile])
+        #return scriptOutput
 
     def getModulesToTest(self):
         modules = os.listdir(self.directories.frontendModulesDir)
@@ -33,8 +36,9 @@ class FrontEndTestSuite:
 
 
 frontEndTestSuite = FrontEndTestSuite()
-print frontEndTestSuite.directories.frontEndProgram
+#print frontEndTestSuite.directories.frontEndProgram
 modules = frontEndTestSuite.getModulesToTest()
 testFiles = frontEndTestSuite.getTestInputFiles(modules[0])
-print testFiles[0]
-print frontEndTestSuite.runTest(testFiles[0])
+#print testFiles[0]
+#print frontEndTestSuite.runTest(testFiles[0])
+frontEndTestSuite.runTest(testFiles[0])

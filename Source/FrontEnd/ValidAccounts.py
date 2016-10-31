@@ -1,5 +1,6 @@
 import fileinput
 import pdb
+import os
 from FrontEndValidator import FrontEndValidator
 
 #This class contains all of the valid, as well as invalid, accounts for a given session
