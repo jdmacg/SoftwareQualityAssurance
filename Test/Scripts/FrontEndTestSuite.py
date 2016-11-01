@@ -17,8 +17,7 @@ class FrontEndTestSuite:
         return commands'''
 
     def runTest(self, testFile):
-        print self.directories.frontEndProgram
-        print testFile
+        test_output = sub.check_output([self.directories.runScript, self.directories.frontEndProgram, testFile])
         #sub.call([self.directories.runScript, self.directories.frontEndProgram, testFile])
         #scriptOutput = sub.check_output([self.directories.runScript, testFile])
         #return scriptOutput
@@ -41,4 +40,6 @@ modules = frontEndTestSuite.getModulesToTest()
 testFiles = frontEndTestSuite.getTestInputFiles(modules[0])
 #print testFiles[0]
 #print frontEndTestSuite.runTest(testFiles[0])
-frontEndTestSuite.runTest(testFiles[0])
+print "this is in python"
+print frontEndTestSuite.runTest(testFiles[0])
+print "now not in python"

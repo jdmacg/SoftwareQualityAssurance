@@ -60,7 +60,7 @@ class Session:
 		elif userInput == "transfer":
 			self.transfer()
 		elif userInput == "logout":
-			self.isLoggedIn = False
+                        self.isLoggedIn = False
 			self.transactionRecords.writeTransactonFile()
 		else:
 			print "Not a valid command"

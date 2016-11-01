@@ -19,7 +19,9 @@ transactionIndex = 2
 transactionFile = "TransactionSummary.txt"
 accountsFile = "ValidAccounts.txt"
 
-
+oldWorkingDir = os.path.dirname(os.path.realpath(__file__))
+newWorkingDir = os.path.dirname(os.path.realpath(__file__))
+os.chdir(newWorkingDir)
 #until a logon is sucessful the following loop will continue to run
 while True:
 	userInput = raw_input("Enter a command : ")
@@ -33,6 +35,9 @@ while session.isLoggedIn is True:
 	userInput = session.getInput()
 	session.runCommand(userInput)
 
+print "Goodbye!"
+
+os.chdir(oldWorkingDir)
 ('\n'
  '        print "running from text file!"\n'
  '        oldWorkingDir = os.path.dirname(os.path.realpath(__file__))\n'
