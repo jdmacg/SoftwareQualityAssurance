@@ -19,7 +19,7 @@ class FrontEndTestSuite:
     def runTest(self, testFile):
         print self.directories.frontEndProgram
         print testFile
-        #sub.call([self.directories.runScript, self.directories.frontEndProgram, testFile])
+        sub.call([self.directories.runScript, self.directories.frontEndProgram, testFile])
         #scriptOutput = sub.check_output([self.directories.runScript, testFile])
         #return scriptOutput
 
