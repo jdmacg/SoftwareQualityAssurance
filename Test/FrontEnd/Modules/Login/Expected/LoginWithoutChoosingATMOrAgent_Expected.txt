@@ -1,0 +1,3 @@
+Error. ATM or Agent not specified.
+Error. Cannot deposit while not logged in.
+Eror. Cannot logout if not logged in.
