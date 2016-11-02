@@ -6,32 +6,42 @@ import subprocess as sub
 #sys.path.insert(0, Directories.frontendSourceDir)
 #import FrontEnd
 
+
+
 class FrontEndTestSuite:
     def __init__(self):
         self.directories = Directories()
-        self.modulesToTest = self.getModulesToTest()
+        self.modulesToTest = self.directories.getModulesToTest()
+        self.modulesWithPaths = dict()
+        for moduleInputDir in self.modulesToTest:
+            moduleName = self.directories.getModuleNameFromPath(moduleInputDir)
+            self.modulesWithPath[moduleName] = [moduleInputDir]
+        self.inputIdx = 0
+        self.outputIdx = 1
 
-    '''def getCommandsFromFile(self, testFile):
-        commands = open(testFile).readlines()
-        commands = [line.strip() for line in commands]
-        return commands'''
+    def runTests(self):
+        testOutputDir = self.directories.createTestDirectory()
+        modules = self.modulesToTest
+        for modulePath in modules:
+            moduleName = self.directories.getModuleNameFromPath(modulePath)
+            self.modulesWithPath[moduleName] = self.directories.getModuleOutputDirGivenName(moduleName, testOutputDir)
+            testFiles = frontEndTestSuite.getTestInputFiles(modulePath)
+            for testFile in testFiles:
+                testOutput = self.runTest(testFile)
+                self.writeTestResultsToDir(testOutput, testOutputDir, testFile)
+
+    def writeTestResultsToDir(self, testOutput, testOutputDir, testFile):
+        testName = self.directories.getTestNameFromFile(testFile)
+        moduleName = self.directories.getModuleOutputDirGivenName()
+        outputTestFilePath = self.modulesWithPaths[moduleName][self.outputIdx] + testName + "_Ouput.txt"
+        f = open(outputTestFilePath, 'w')
+        f.write(testOutput)
+        f.close()
 
     def runTest(self, testFile):
-        test_output = sub.check_output([self.directories.runScript, self.directories.frontEndProgram, testFile])
-        #sub.call([self.directories.runScript, self.directories.frontEndProgram, testFile])
-        #scriptOutput = sub.check_output([self.directories.runScript, testFile])
-        #return scriptOutput
-
-    def getModulesToTest(self):
-        modules = os.listdir(self.directories.frontendModulesDir)
-        modules = [self.directories.frontendModulesDir + self.directories.slash + module for module in modules if '.' not in module]
-        return modules
-
-    def getTestInputFiles(self, modulePath):
-        inputDir = self.directories.getTestInputDir(modulePath)
-        testFiles = os.listdir(inputDir)
-        testFiles = [inputDir + self.directories.slash + testFile for testFile in testFiles if '.' in testFile]
-        return testFiles
+        #calls the bash script, returns the script output
+        testOutput = sub.check_output([self.directories.runScript, self.directories.frontEndProgram, testFile])
+        return testOutput
 
 
 frontEndTestSuite = FrontEndTestSuite()

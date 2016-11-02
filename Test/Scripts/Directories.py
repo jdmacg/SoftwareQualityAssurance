@@ -37,12 +37,50 @@ class Directories:
 
         if not os.path.exists(testOutputPath):
             os.makedirs(testOutputPath)
+
+        modules = self.getModulesToTest()
+        for module in modules:
+            moduleOutputPath = testOutputPath + self.slash
+            moduleOutputPath += self.getModuleNameFromPath(module) + self.slash
+            if not os.path.exists(moduleOutputPath):
+                os.makedirs(moduleOutputPath)
+
         self.numTestRuns += 1
         return testOutputPath
+
+    def getTestInputFiles(self, modulePath):
+        inputDir = self.getTestInputDir(modulePath)
+        testFiles = os.listdir(inputDir)
+        testFiles = [inputDir + self.slash + testFile for testFile in testFiles if '.' in testFile]
+        return testFiles
+
+    def getModulesToTest(self):
+        modules = os.listdir(self.frontendModulesDir)
+        modules = [self.frontendModulesDir + self.slash + module for module in modules if '.' not in module]
+        return modules
 
     def getTestInputDir(self, testPath):
         return testPath + self.slash + "Inputs"
 
     def getTestExpectedDir(self, testPath):
         return testPath + self.slash + "ExpectedOutputs"
+
+    def getModuleNameFromPath(self, path):
+        moduleIdx = path.index("Modules")
+        leftSlashIdx = path.index(self.slash, moduleIdx)
+        rightSlashIdx = len(path)
+        if self.slash in path[leftSlashIdx + 1]:
+            rightSlashIdx = path.index(self.slash, leftSlashIdx + 1)
+        return path[leftSlashIdx + 1: rightSlashIdx]
+
+    def getModuleInputDirGivenName(self, moduleName):
+        return self.frontendModulesDir + self.slash + moduleName + self.slash
+
+    def getModuleOutputDirGivenName(self, moduleName, testOutputDir):
+        return testOutputDir + self.slash + moduleName + self.slash
+
+    def getTestNameFromFile(self, testFile):
+        slashIdx = testFile.rfind(self.slash)
+        underscoreIdx = testFile.rfind("_")
+        return testFile[slashIdx + 1: underscoreIdx]
 
