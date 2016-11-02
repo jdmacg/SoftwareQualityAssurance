@@ -1,0 +1,2 @@
+Error. Wrong account name with provided account number.
+ES 00000000 00000000 000 ***

@@ -1,0 +1,2 @@
+Error. Invalid text as account number.
+ES 00000000 00000000 000 ***

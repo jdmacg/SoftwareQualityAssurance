@@ -1,0 +1,9 @@
+login
+agent
+create
+11111110
+testAccount
+deposit
+11111110
+500
+logout

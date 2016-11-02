@@ -1,0 +1,5 @@
+DE 11111110 00000000 1000 ***
+Error. Cannot delete account with leftover funds.
+WD 11111110 00000000 1000 ***
+DL 11111110 00000000 000 accountName
+ES 00000000 00000000 000 ***
