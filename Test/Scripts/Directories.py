@@ -1,7 +1,7 @@
 import os.path
 import datetime
 import sys
-
+import pdb
 
 
 class Directories:
@@ -33,7 +33,7 @@ class Directories:
         minute = '{:02d}'.format(currDate.minute)
 
         if isFrontEnd:
-            testOutputPath = self.frontendOutputDir + "\\" + testOutputName + "_" + day + month + year + "_" + hour + minute
+            testOutputPath = self.frontendOutputDir + self.slash + testOutputName + "_" + day + month + year + "_" + hour + minute
 
         if not os.path.exists(testOutputPath):
             os.makedirs(testOutputPath)
@@ -69,7 +69,7 @@ class Directories:
         moduleIdx = path.index("Modules")
         leftSlashIdx = path.index(self.slash, moduleIdx)
         rightSlashIdx = len(path)
-        if self.slash in path[leftSlashIdx + 1]:
+        if self.slash in path[leftSlashIdx + 1:]:
             rightSlashIdx = path.index(self.slash, leftSlashIdx + 1)
         return path[leftSlashIdx + 1: rightSlashIdx]
 

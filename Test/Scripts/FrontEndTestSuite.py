@@ -15,7 +15,7 @@ class FrontEndTestSuite:
         self.modulesWithPaths = dict()
         for moduleInputDir in self.modulesToTest:
             moduleName = self.directories.getModuleNameFromPath(moduleInputDir)
-            self.modulesWithPath[moduleName] = [moduleInputDir]
+            self.modulesWithPaths[moduleName] = [moduleInputDir]
         self.inputIdx = 0
         self.outputIdx = 1
 
@@ -24,15 +24,15 @@ class FrontEndTestSuite:
         modules = self.modulesToTest
         for modulePath in modules:
             moduleName = self.directories.getModuleNameFromPath(modulePath)
-            self.modulesWithPath[moduleName] = self.directories.getModuleOutputDirGivenName(moduleName, testOutputDir)
-            testFiles = frontEndTestSuite.getTestInputFiles(modulePath)
+            self.modulesWithPaths[moduleName].append(self.directories.getModuleOutputDirGivenName(moduleName, testOutputDir))
+            testFiles = self.directories.getTestInputFiles(modulePath)
             for testFile in testFiles:
                 testOutput = self.runTest(testFile)
                 self.writeTestResultsToDir(testOutput, testOutputDir, testFile)
-
+        
     def writeTestResultsToDir(self, testOutput, testOutputDir, testFile):
         testName = self.directories.getTestNameFromFile(testFile)
-        moduleName = self.directories.getModuleOutputDirGivenName()
+        moduleName = self.directories.getModuleNameFromPath(testFile)
         outputTestFilePath = self.modulesWithPaths[moduleName][self.outputIdx] + testName + "_Ouput.txt"
         f = open(outputTestFilePath, 'w')
         f.write(testOutput)
@@ -45,6 +45,9 @@ class FrontEndTestSuite:
 
 
 frontEndTestSuite = FrontEndTestSuite()
+frontEndTestSuite.runTests()
+'''
+frontEndTestSuite = FrontEndTestSuite()
 #print frontEndTestSuite.directories.frontEndProgram
 modules = frontEndTestSuite.getModulesToTest()
 testFiles = frontEndTestSuite.getTestInputFiles(modules[0])
@@ -53,3 +56,4 @@ testFiles = frontEndTestSuite.getTestInputFiles(modules[0])
 print "this is in python"
 print frontEndTestSuite.runTest(testFiles[0])
 print "now not in python"
+'''
