@@ -31,10 +31,10 @@ class FrontEndTestSuite:
     def compareTransactionTestResults(self):
         for moduleName in self.modulesWithPaths:
             moduleInputDir = self.modulesWithPaths[moduleName][self.inputIdx]
-            print ("module input dir: ", moduleInputDir)
+            print "module input dir: ", moduleInputDir
             moduleOutputDir = self.modulesWithPaths[moduleName][self.outputIdx]
             moduleExpectedDir = self.directories.getTestExpectedDir(moduleInputDir)
-            print moduleExpectedDir
+            ##print moduleExpectedDir
             outputFiles = self.directories.getTestFiles(moduleOutputDir)
             expectedFiles = self.directories.getTestFiles(moduleExpectedDir)
             for outputFile in outputFiles:
@@ -42,6 +42,7 @@ class FrontEndTestSuite:
                     continue
                 elif "TransactionOutput" in outputFile:
                     print "#2"
+                    print "outputFile" outputFile
                     testName = self.directories.getModuleNameFromPath(outputFile)
                     expectedFile = [file for file in expectedFiles if testName in file]
                     outputFileData = open(outputFile).readlines()
