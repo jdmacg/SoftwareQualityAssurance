@@ -35,7 +35,6 @@ class FrontEndTestSuite:
             outputFiles = self.directories.getTestFiles(moduleOutputDir)
             expectedFiles = self.directories.getTestFiles(moduleExpectedDir)
             for outputFile in outputFiles:
-                print outputFile
                 if "ConsoleOutput" in outputFile:
                     continue
                 elif "TransactionOutput" in outputFile:
