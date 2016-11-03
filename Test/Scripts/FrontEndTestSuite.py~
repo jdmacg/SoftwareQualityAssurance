@@ -32,6 +32,7 @@ class FrontEndTestSuite:
         pdb.set_trace()
         for moduleName in self.modulesWithPaths:
             moduleInputDir = self.modulesWithPaths[moduleName][self.inputIdx]
+            print moduleInputDir
             moduleOutputDir = self.modulesWithPaths[moduleName][self.outputIdx]
             moduleExpectedDir = self.directories.getTestExpectedDir(moduleInputDir)
             print moduleExpectedDir

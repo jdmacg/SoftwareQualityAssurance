@@ -29,7 +29,6 @@ class FrontEndTestSuite:
                 self.writeTestResultsToDir(testOutput, testOutputDir, testFile)
 
     def compareTransactionTestResults(self):
-        pdb.set_trace()
         for moduleName in self.modulesWithPaths:
             moduleInputDir = self.modulesWithPaths[moduleName][self.inputIdx]
             print moduleInputDir
