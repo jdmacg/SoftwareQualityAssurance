@@ -1,2 +1,1 @@
-Error. Account name	cannot be longer than 30 alphanumeric characters.
 ES 00000000 00000000 000 ***

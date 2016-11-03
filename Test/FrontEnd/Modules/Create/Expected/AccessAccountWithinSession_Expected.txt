@@ -1,3 +1,2 @@
 CR 11111110 00000000 000 accountName
-Error. Cannot access newly created account within session.
 ES 00000000 00000000 000 ***

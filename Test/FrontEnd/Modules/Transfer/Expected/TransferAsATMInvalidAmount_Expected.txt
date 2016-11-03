@@ -1,2 +1,1 @@
-Error. cannot transfer more than $1000.00 as ATM account.
 ES 00000000 00000000 000 ***

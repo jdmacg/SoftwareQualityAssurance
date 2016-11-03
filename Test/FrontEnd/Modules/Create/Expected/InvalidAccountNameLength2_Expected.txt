@@ -1,2 +1,1 @@
-Error. Account name must be at lest three characters long.
 ES 00000000 00000000 000 ***

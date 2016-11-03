@@ -1,2 +1,1 @@
-Error. Attempted to withdraw invalid event as agent.
 ES 00000000 00000000 000 ***

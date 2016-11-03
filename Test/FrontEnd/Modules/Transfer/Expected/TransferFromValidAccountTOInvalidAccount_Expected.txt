@@ -1,2 +1,1 @@
-Error. Attempted transfer to invalid account.
 ES 00000000 00000000 000 ***

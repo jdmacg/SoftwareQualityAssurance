@@ -1,2 +1,1 @@
-Error. Account number cannot begin with 0.
 ES 00000000 00000000 000 ***

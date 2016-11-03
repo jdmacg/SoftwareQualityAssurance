@@ -1,2 +1,1 @@
-Error. Invalid amount as agent.
 ES 00000000 00000000 000 ***

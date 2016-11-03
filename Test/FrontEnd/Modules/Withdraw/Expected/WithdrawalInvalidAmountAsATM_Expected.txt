@@ -1,2 +1,1 @@
-Error. Cannot withdraw more than $1000.00 from an ATM
 ES 00000000 00000000 000 ***

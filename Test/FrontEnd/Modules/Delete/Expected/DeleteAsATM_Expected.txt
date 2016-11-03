@@ -1,2 +1,1 @@
-Error. Cannot delete account logged into atm.
 ES 00000000 00000000 000 ***

@@ -1,2 +1,1 @@
-Error. Cannot logout if you have not logged in.
 ES 00000000 00000000 000 ***

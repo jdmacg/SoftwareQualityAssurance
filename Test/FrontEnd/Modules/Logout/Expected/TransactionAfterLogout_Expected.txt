@@ -1,2 +1,1 @@
-Error. Cannot execute transaction after a logout.
 ES 00000000 00000000 000 ***

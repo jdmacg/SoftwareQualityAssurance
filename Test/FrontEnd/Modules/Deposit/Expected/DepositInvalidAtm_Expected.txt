@@ -1,2 +1,1 @@
-Error. Cannot deposit more than $1000.00 in atm mode.
 ES 00000000 00000000 000 ***
