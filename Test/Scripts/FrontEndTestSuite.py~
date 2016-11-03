@@ -32,6 +32,7 @@ class FrontEndTestSuite:
             moduleInputDir = self.modulesWithPaths[moduleName][self.inputIdx]
             moduleOutputDir = self.modulesWithPaths[moduleName][self.outputIdx]
             moduleExpectedDir = self.directories.getTestExpectedDir(moduleInputDir)
+            print moduleOutputDir
             outputFiles = self.directories.getTestFiles(moduleOutputDir)
             expectedFiles = self.directories.getTestFiles(moduleExpectedDir)
             for outputFile in outputFiles:
