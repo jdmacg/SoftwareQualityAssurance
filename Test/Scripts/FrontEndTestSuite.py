@@ -49,7 +49,8 @@ class FrontEndTestSuite:
         moduleName = self.directories.getModuleNameFromPath(testFile)
         outputTestFilePath = self.modulesWithPaths[moduleName][self.outputIdx] + testName + "_ConsoleOuput.txt"
         f = open(outputTestFilePath, 'w')
-        f.write(testOutput)
+        for line in testOutput: 
+            f.write(line)
         f.close()
 
     def runTest(self, testFile):
