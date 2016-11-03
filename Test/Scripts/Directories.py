@@ -82,6 +82,16 @@ class Directories:
             slashIdx = path.rindex(self.slash, end=len(path) - 1)
         return path[:slashIdx]
 
+    def getModuleNameFromOutputPath (self, path):
+        testOutputIdx = path.index("Testoutput")
+        leftSlashIdx = path.index(self.slash, testOutputIdx)
+        leftSlashIdx += 29
+        rightSlashIdx = len(path)
+        if self.slash in path[leftSlashIdx + 1:]:
+            rightSlashIdx = path.index(self.slash, leftSlashIdx + 1)
+        return path[leftSlashIdx + 1: rightSlashIdx]        
+        
+
     def getModuleNameFromPath(self, path):
         moduleIdx = path.index("Modules")
         leftSlashIdx = path.index(self.slash, moduleIdx)
