@@ -26,7 +26,7 @@ os.chdir(newWorkingDir)
 while True:
 	try:
             userInput = raw_input("Enter a command : ")
-	except(EOFError):
+	except EOFError:
             sys.exit()
         session = Session(userInput, accountsFile, transactionFile)
 	if session.isReady is True:

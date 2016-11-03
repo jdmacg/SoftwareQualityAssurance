@@ -1,4 +1,4 @@
-login 
+login
 agent
 deposit
 11111110
@@ -6,7 +6,7 @@ deposit
 delete
 11111110
 testAccount
-withdrawl 
+withdrawl
 11111110
 1000
 delete
