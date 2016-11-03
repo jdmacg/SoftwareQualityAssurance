@@ -34,10 +34,12 @@ class FrontEndTestSuite:
             moduleExpectedDir = self.directories.getTestExpectedDir(moduleInputDir)
             outputFiles = moduleOutputDir[:-1]
             expectedFiles = moduleExpectedDir[:-1]
+            print "#1"
             for outputFile in outputFiles:
                 if "ConsoleOutput" in outputFile:
                     continue
                 elif "TransactionOutput" in outputFile:
+                    print "#2"
                     testName = self.directories.getModuleNameFromPath(outputFile)
                     expectedFile = [file for file in expectedFiles if testName in file]
                     outputFileData = open(outputFile).readlines()
