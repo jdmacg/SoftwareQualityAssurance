@@ -72,8 +72,8 @@ class Directories:
         return testPath + self.slash + "Inputs"
 
     def getTestExpectedDir(self, testInputPath):
-        #changed heereeeeeeeeeeeeeeeeeeeeeeeeeeeee
-        return self.slash + "Expected"
+        #changed hereeeeeee
+        return self.testInputPath + self.slash + "Expected"
 
     def upDirectory(self, path):
         slashIdx = path.rindex(self.slash)
