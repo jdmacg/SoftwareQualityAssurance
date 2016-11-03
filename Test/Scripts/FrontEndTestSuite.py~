@@ -9,7 +9,7 @@ class FrontEndTestSuite:
         self.directories = Directories()
         self.modulesToTest = self.directories.getModulesToTest()
         self.modulesWithPaths = dict()
-		print "hello"
+		x = 2
         for moduleInputDir in self.modulesToTest:
             moduleName = self.directories.getModuleNameFromPath(moduleInputDir)
             self.modulesWithPaths[moduleName] = [moduleInputDir]
