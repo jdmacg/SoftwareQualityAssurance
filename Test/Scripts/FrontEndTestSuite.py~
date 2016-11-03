@@ -35,7 +35,7 @@ class FrontEndTestSuite:
             outputFiles = moduleOutputDir[:-1]
             expectedFiles = moduleExpectedDir[:-1]
             for outputFile in outputFiles:
-                print "#1"
+                print outputFile
                 if "ConsoleOutput" in outputFile:
                     continue
                 elif "TransactionOutput" in outputFile:
