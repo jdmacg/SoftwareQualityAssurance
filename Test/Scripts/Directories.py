@@ -83,7 +83,7 @@ class Directories:
         return path[:slashIdx]
 
     def getModuleNameFromOutputPath (self, path):
-        testOutputIdx = path.index("Testoutput")
+        testOutputIdx = path.index("TestOutput")
         leftSlashIdx = path.index(self.slash, testOutputIdx)
         leftSlashIdx += 29
         rightSlashIdx = len(path)
