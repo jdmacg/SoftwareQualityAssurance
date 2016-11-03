@@ -32,8 +32,8 @@ class FrontEndTestSuite:
             moduleInputDir = self.modulesWithPaths[moduleName][self.inputIdx]
             moduleOutputDir = self.modulesWithPaths[moduleName][self.outputIdx]
             moduleExpectedDir = self.directories.getTestExpectedDir(moduleInputDir)
-            outputFiles = self.directories.getTestInputFiles(moduleOutputDir[:-1])
-            expectedFiles = self.directories.getTestInputFiles(moduleExpectedDir[:-1])
+            outputFiles = self.directories.getTestInputFiles(moduleOutputDir)
+            expectedFiles = self.directories.getTestInputFiles(moduleExpectedDir)
             for outputFile in outputFiles:
                 if "ConsoleOutput" in outputFile:
                     continue
