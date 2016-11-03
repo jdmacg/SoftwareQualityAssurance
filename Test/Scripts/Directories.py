@@ -63,7 +63,7 @@ class Directories:
         return modules
 
     def getTestInputDir(self, testPath):
-        return testPath + "Inputs"
+        return testPath + self.slash + "Inputs"
 
     def getTestExpectedDir(self, testInputPath):
         return self.upDirectory(testInputPath) + self.slash + "Expected"
