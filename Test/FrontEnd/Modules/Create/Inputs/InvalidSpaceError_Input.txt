@@ -1,6 +1,0 @@
-login
-agent
-create
-11111110
- testAccount
-logout

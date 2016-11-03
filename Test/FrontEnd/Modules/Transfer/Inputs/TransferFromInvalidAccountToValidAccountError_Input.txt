@@ -1,7 +1,0 @@
-login
-atm
-transfer
-11111111
-11111120
-100
-logout

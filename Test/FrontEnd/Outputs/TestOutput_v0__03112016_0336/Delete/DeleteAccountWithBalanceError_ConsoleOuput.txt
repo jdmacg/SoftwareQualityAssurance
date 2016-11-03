@@ -1,0 +1,9 @@
+Enter a command : Enter a command : Valid accounts file has been sucessfully loaded.
+Welcome!
+Enter a command : Enter account number to deposit to: Enter amount to deposit: Amount $10.00 has been deposited
+Enter a command : Please enter account number: Please enter account name: Account deleted
+Enter a command : Not a valid command
+Enter a command : Not a valid command
+Enter a command : Not a valid command
+Enter a command : Please enter account number: Please enter account name: Account does not exist
+Enter a command : Goodbye!

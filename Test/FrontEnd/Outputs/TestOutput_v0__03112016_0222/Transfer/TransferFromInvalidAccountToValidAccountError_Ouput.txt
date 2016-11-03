@@ -1,0 +1,6 @@
+/home/ec2-user/327/SoftwareQualityAssurance/Test/Scripts
+Enter a command : Enter a command : Valid accounts file has been sucessfully loaded.
+Welcome!
+Enter a command : Enter account number to transfer from: Enter account number to transfer to: 11111120  is an invalid account number
+Enter a command : Not a valid command
+Enter a command : Goodbye!

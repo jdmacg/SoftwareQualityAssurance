@@ -65,8 +65,14 @@ class Directories:
     def getTestInputDir(self, testPath):
         return testPath + self.slash + "Inputs"
 
-    def getTestExpectedDir(self, testPath):
-        return testPath + self.slash + "ExpectedOutputs"
+    def getTestExpectedDir(self, testInputPath):
+        return self.upDirectory(testInputPath) + self.slash + "Expected"
+
+    def upDirectory(self, path):
+        slashIdx = path.rindex(self.slash)
+        if path[-1] == self.slash:
+            slashIdx = path.rindex(self.slash, end=len(path) - 1)
+        return path[:slashIdx]
 
     def getModuleNameFromPath(self, path):
         moduleIdx = path.index("Modules")

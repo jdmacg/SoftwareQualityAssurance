@@ -1,0 +1,11 @@
+/home/ec2-user/327/SoftwareQualityAssurance/Test/Scripts
+Enter a command : You must log in using 'login' command
+Enter a command : You must log in using 'login' command
+Enter a command : You must log in using 'login' command
+Enter a command : You must log in using 'login' command
+Enter a command : You must log in using 'login' command
+Enter a command : You must log in using 'login' command
+Enter a command : You must log in using 'login' command
+Enter a command : You must log in using 'login' command
+Enter a command : You must log in using 'login' command
+Enter a command : 

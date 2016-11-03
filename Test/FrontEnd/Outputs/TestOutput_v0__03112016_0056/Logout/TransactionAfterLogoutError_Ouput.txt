@@ -1,0 +1,6 @@
+/home/ec2-user/327/SoftwareQualityAssurance/Test/Scripts
+Enter a command : Enter a command : Please enter 'atm' or 'agent'
+Enter a command : Please enter 'atm' or 'agent'
+Enter a command : Please enter 'atm' or 'agent'
+Enter a command : Please enter 'atm' or 'agent'
+Enter a command : 

@@ -3,11 +3,6 @@ import os
 import subprocess as sub
 import sys
 import subprocess as sub
-from shutil import copyfile
-#sys.path.insert(0, Directories.frontendSourceDir)
-#import FrontEnd
-
-
 
 class FrontEndTestSuite:
     def __init__(self):
@@ -32,7 +27,34 @@ class FrontEndTestSuite:
                 self.copyTransactionSummaryToOutput(testOutputDir, testFile)
                 self.writeTestResultsToDir(testOutput, testOutputDir, testFile)
 
-    #def compareTestResults
+    def compareTransactionTestResults(self):
+        for moduleName in self.modulesWithPaths:
+            moduleInputDir = self.modulesWithPaths[moduleName][self.inputIdx]
+            moduleOutputDir = self.modulesWithPaths[moduleName][self.outputIdx]
+            moduleExpectedDir = self.directories.getTestExpectedDir(moduleInputDir)
+
+            outputFiles = self.directories.getTestInputFiles(moduleOutputDir)
+            expectedFiles = self.directories.getTestInputFiles(moduleExpectedDir)
+
+            for outputFile in outputFiles:
+                if "ConsoleOutput" in outputFile:
+                    continue
+                elif "TranscationOutput" in outputFile:
+                    testName = self.directories.getModuleNameFromPath(outputFile)
+                    expectedFile = [file for file in expectedFiles if testName in file]
+                    outputFileData = open(outputFile).readlines()
+                    expectedfileData = open(expectedFile).readlines()
+                    comparison = self.compareFiles(expectedFiles, outputFiles)
+
+    def compareFiles(self, expectedData, outputData):
+	testName = self.directories.getNameFromFile(expectedData)
+	moduleName = self.directories.getModuleNameFromPath(expectedData)
+	diffFileDestination = self.modulesWithPaths[moduleName][self.outputIdx] + testName + "_diffFile.txt"
+	bashcommand = ("diff " + expectedData + " " + outputData + " > " + diffFileDestination)
+	process = sub.Popen(bashCommand)         
+	#for expectedLine in expectedData:
+            #for outputLine in outputData:
+                #do some comparison
 
     def copyTransactionSummaryToOutput(self, testOutputDir, testFile):
         testName = self.directories.getTestNameFromFile(testFile)
@@ -61,3 +83,5 @@ class FrontEndTestSuite:
 
 frontEndTestSuite = FrontEndTestSuite()
 frontEndTestSuite.runTests()
+frontEndTestSuite.compareTransactionTestResults()
+
