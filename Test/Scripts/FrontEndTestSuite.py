@@ -37,10 +37,10 @@ class FrontEndTestSuite:
     def copyTransactionSummaryToOutput(self, testOutputDir, testFile):
         testName = self.directories.getTestNameFromFile(testFile)
         moduleName = self.directories.getModuleNameFromPath(testFile)
-        transactionSummaryDestination = self.modulesWithPaths[moduleName][self.outputIdx] + testName + "_TransactionOut.txt"
+        transactionSummaryDestination = self.modulesWithPaths[moduleName][self.outputIdx] + testName + "_TransactionOutput.txt"
         transactionSummarySource = self.directories.getTransactionSummaryFile()
         with open(transactionSummarySource) as src:
-            with open(transactionSummaryDestination) as dst:
+            with open(transactionSummaryDestination, 'w+') as dst:
                 for line in src:
                     dst.write(line)
 

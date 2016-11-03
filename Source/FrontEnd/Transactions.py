@@ -19,7 +19,7 @@ class Transactions:
         f = open(self.transactionFile, 'w')
         for transaction in self.transactionList:
             f.write("".join(transaction) + "\n")
-        f.write("ES")
+        f.write("ES 00000000 00000000 000 ***")
         f.close()
 
 
