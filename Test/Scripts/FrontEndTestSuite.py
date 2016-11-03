@@ -38,6 +38,7 @@ class FrontEndTestSuite:
                 if "ConsoleOutput" in outputFile:
                     continue
                 elif "TranscationOutput" in outputFile:
+                    print "hello"
                     testName = self.directories.getModuleNameFromPath(outputFile)
                     expectedFile = [file for file in expectedFiles if testName in file]
                     outputFileData = open(outputFile).readlines()
@@ -48,7 +49,6 @@ class FrontEndTestSuite:
 	    testName = self.directories.getNameFromFile(expectedData)
 	    moduleName = self.directories.getModuleNameFromPath(expectedData)
 	    diffFileDestination = self.modulesWithPaths[moduleName][self.outputIdx] + testName + "_diffFile.txt"
-	    print diffFileDestination + "hello"
 	    bashcommand = ("diff " + expectedData + " " + outputData + " > " + diffFileDestination)
 	    process = sub.Popen(bashCommand)         
 	    #for expectedLine in expectedData:
