@@ -1,2 +1,0 @@
-Error. cannot execute privaleged transaction in ATM mode.
-ES 00000000 00000000 000 ***
