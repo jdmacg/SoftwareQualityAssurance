@@ -48,6 +48,7 @@ class FrontEndTestSuite:
 	    testName = self.directories.getNameFromFile(expectedData)
 	    moduleName = self.directories.getModuleNameFromPath(expectedData)
 	    diffFileDestination = self.modulesWithPaths[moduleName][self.outputIdx] + testName + "_diffFile.txt"
+	    print diffFileDestination
 	    bashcommand = ("diff " + expectedData + " " + outputData + " > " + diffFileDestination)
 	    process = sub.Popen(bashCommand)         
 	    #for expectedLine in expectedData:
