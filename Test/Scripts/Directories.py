@@ -58,6 +58,7 @@ class Directories:
         return testFiles
 
     def getTestFiles(self, modulePath):
+        print modulePath
         testFiles = os.listdir(modulePath)
         testFiles = [modulePath + self.slash + testFile for testFile in testFiles if '.' in testFile]
         return testFiles
