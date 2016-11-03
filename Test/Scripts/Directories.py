@@ -85,11 +85,11 @@ class Directories:
     def getModuleNameFromOutputPath (self, path):
         testOutputIdx = path.index("TestOutput")
         leftSlashIdx = path.index(self.slash, testOutputIdx)
-        leftSlashIdx += 29
+        leftSlashIdx += 28
         rightSlashIdx = len(path)
         if self.slash in path[leftSlashIdx + 1:]:
             rightSlashIdx = path.index(self.slash, leftSlashIdx + 1)
-        print path[leftSlashIdx + 1 : rightSlashIdx]
+        print "module nume: ", path[leftSlashIdx + 1 : rightSlashIdx]
         return path[leftSlashIdx + 1: rightSlashIdx]        
         
 
