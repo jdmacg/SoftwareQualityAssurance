@@ -3,6 +3,7 @@ import os
 import subprocess as sub
 import sys
 import subprocess as sub
+from shutil import copyfile
 #sys.path.insert(0, Directories.frontendSourceDir)
 #import FrontEnd
 
@@ -28,12 +29,25 @@ class FrontEndTestSuite:
             testFiles = self.directories.getTestInputFiles(modulePath)
             for testFile in testFiles:
                 testOutput = self.runTest(testFile)
+                self.copyTransactionSummaryToOutput(testOutputDir, testFile)
                 self.writeTestResultsToDir(testOutput, testOutputDir, testFile)
-        
+
+    #def compareTestResults
+
+    def copyTransactionSummaryToOutput(self, testOutputDir, testFile):
+        testName = self.directories.getTestNameFromFile(testFile)
+        moduleName = self.directories.getModuleNameFromPath(testFile)
+        transactionSummaryDestination = self.modulesWithPaths[moduleName][self.outputIdx] + testName + "_TransactionOut.txt"
+        transactionSummarySource = self.directories.getTransactionSummaryFile()
+        with open(transactionSummarySource) as src:
+            with open(transactionSummaryDestination) as dst:
+                for line in src:
+                    dst.write(line)
+
     def writeTestResultsToDir(self, testOutput, testOutputDir, testFile):
         testName = self.directories.getTestNameFromFile(testFile)
         moduleName = self.directories.getModuleNameFromPath(testFile)
-        outputTestFilePath = self.modulesWithPaths[moduleName][self.outputIdx] + testName + "_Ouput.txt"
+        outputTestFilePath = self.modulesWithPaths[moduleName][self.outputIdx] + testName + "_ConsoleOuput.txt"
         f = open(outputTestFilePath, 'w')
         f.write(testOutput)
         f.close()
@@ -46,14 +60,3 @@ class FrontEndTestSuite:
 
 frontEndTestSuite = FrontEndTestSuite()
 frontEndTestSuite.runTests()
-'''
-frontEndTestSuite = FrontEndTestSuite()
-#print frontEndTestSuite.directories.frontEndProgram
-modules = frontEndTestSuite.getModulesToTest()
-testFiles = frontEndTestSuite.getTestInputFiles(modules[0])
-#print testFiles[0]
-#print frontEndTestSuite.runTest(testFiles[0])
-print "this is in python"
-print frontEndTestSuite.runTest(testFiles[0])
-print "now not in python"
-'''

@@ -48,6 +48,9 @@ class Directories:
         self.numTestRuns += 1
         return testOutputPath
 
+    def getTransactionSummaryFile(self):
+        return self.frontendSourceDir + self.slash + "TransactionSummary.txt"
+
     def getTestInputFiles(self, modulePath):
         inputDir = self.getTestInputDir(modulePath)
         testFiles = os.listdir(inputDir)
