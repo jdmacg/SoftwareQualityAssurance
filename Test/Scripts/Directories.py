@@ -57,6 +57,11 @@ class Directories:
         testFiles = [inputDir + self.slash + testFile for testFile in testFiles if '.' in testFile]
         return testFiles
 
+    def getTestFiles(self, modulePath):
+        testFiles = os.listdir(modulePath)
+        testFiles = [inputDir + self.slash + testFile for testFile in testFiles if '.' in testFile]
+        return testFiles
+
     def getModulesToTest(self):
         modules = os.listdir(self.frontendModulesDir)
         modules = [self.frontendModulesDir + self.slash + module for module in modules if '.' not in module]
