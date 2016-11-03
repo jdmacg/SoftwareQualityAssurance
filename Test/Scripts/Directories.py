@@ -59,7 +59,7 @@ class Directories:
 
     def getModulesToTest(self):
         modules = os.listdir(self.frontendModulesDir)
-        modules = [self.frontendModulesDir + module for module in modules if '.' not in module]
+        modules = [self.frontendModulesDir + self.slash + module for module in modules if '.' not in module]
         return modules
 
     def getTestInputDir(self, testPath):
