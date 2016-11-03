@@ -61,7 +61,7 @@ class Directories:
         print modulePath
         testFiles = os.listdir(modulePath)
         #removed slash here
-        testFiles = [modulePath + self.slash + testFile for testFile in testFiles if '.' in testFile]
+        testFiles = [modulePath + testFile for testFile in testFiles if '.' in testFile]
         return testFiles
 
     def getModulesToTest(self):
@@ -74,7 +74,7 @@ class Directories:
 
     def getTestExpectedDir(self, testInputPath):
         #removed going up a directory here
-        return testInputPath + self.slash + "Expected"
+        return testInputPath + self.slash + "Expected" + self.slash
 
     def upDirectory(self, path):
         slashIdx = path.rindex(self.slash)
