@@ -1,0 +1,5 @@
+login
+deposit
+10000327
+5000
+logout

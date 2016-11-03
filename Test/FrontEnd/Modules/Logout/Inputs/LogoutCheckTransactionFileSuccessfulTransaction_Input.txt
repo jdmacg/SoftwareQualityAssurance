@@ -1,0 +1,7 @@
+login
+atm
+transfer
+10000223
+10000327
+500
+logout
