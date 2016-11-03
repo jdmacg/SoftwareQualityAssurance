@@ -27,7 +27,7 @@ class FrontEndTestSuite:
                 self.copyTransactionSummaryToOutput(testOutputDir, testFile)
                 self.writeTestResultsToDir(testOutput, testOutputDir, testFile)
 
-  	  def compareTransactionTestResults(self):
+    def compareTransactionTestResults(self):
         for moduleName in self.modulesWithPaths:
             moduleInputDir = self.modulesWithPaths[moduleName][self.inputIdx]
             moduleOutputDir = self.modulesWithPaths[moduleName][self.outputIdx]
