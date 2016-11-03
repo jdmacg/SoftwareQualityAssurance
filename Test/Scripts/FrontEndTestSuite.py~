@@ -37,6 +37,7 @@ class FrontEndTestSuite:
             ##print moduleExpectedDir
             outputFiles = self.directories.getTestFiles(moduleOutputDir)
             expectedFiles = self.directories.getTestFiles(moduleExpectedDir)
+            print "expected Files:" , expectedFiles
             for outputFile in outputFiles:
                 if "ConsoleOutput" in outputFile:
                     continue
