@@ -12,10 +12,10 @@ class FrontEndTestSuite:
         for moduleInputDir in self.modulesToTest:
             moduleName = self.directories.getModuleNameFromPath(moduleInputDir)
             self.modulesWithPaths[moduleName] = [moduleInputDir]
-		self.inputIdx = 0
-		self.outputIdx = 1
+        self.inputIdx = 0
+        self.outputIdx = 1
 	
-	def runTests(self):
+    def runTests(self):
         testOutputDir = self.directories.createTestDirectory()
         modules = self.modulesToTest
         for modulePath in modules:
