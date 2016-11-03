@@ -1,6 +1,0 @@
-login 
-atm
-delete
-11111110
-testAccount
-logout
