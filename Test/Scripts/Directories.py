@@ -59,7 +59,7 @@ class Directories:
 
     def getTestFiles(self, modulePath):
         testFiles = os.listdir(modulePath)
-        testFiles = [inputDir + self.slash + testFile for testFile in testFiles if '.' in testFile]
+        testFiles = [modulePath + self.slash + testFile for testFile in testFiles if '.' in testFile]
         return testFiles
 
     def getModulesToTest(self):
