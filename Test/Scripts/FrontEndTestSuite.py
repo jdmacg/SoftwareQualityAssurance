@@ -3,6 +3,7 @@ import os
 import subprocess as sub
 import sys
 import subprocess as sub
+import pdb
 
 class FrontEndTestSuite:
     def __init__(self):
@@ -28,6 +29,7 @@ class FrontEndTestSuite:
                 self.writeTestResultsToDir(testOutput, testOutputDir, testFile)
 
     def compareTransactionTestResults(self):
+        pdb.set_trace()
         for moduleName in self.modulesWithPaths:
             moduleInputDir = self.modulesWithPaths[moduleName][self.inputIdx]
             moduleOutputDir = self.modulesWithPaths[moduleName][self.outputIdx]
