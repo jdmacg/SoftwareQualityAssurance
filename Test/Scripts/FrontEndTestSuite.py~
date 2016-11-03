@@ -11,7 +11,6 @@ class FrontEndTestSuite:
         self.modulesWithPaths = dict()
         for moduleInputDir in self.modulesToTest:
             moduleName = self.directories.getModuleNameFromPath(moduleInputDir)
-			print moduleName
             self.modulesWithPaths[moduleName] = [moduleInputDir]
         self.inputIdx = 0
         self.outputIdx = 1
