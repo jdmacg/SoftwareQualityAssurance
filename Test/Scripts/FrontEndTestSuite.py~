@@ -45,14 +45,15 @@ class FrontEndTestSuite:
                     comparison = self.compareFiles(expectedFiles, outputFiles)
 
     def compareFiles(self, expectedData, outputData):
-	testName = self.directories.getNameFromFile(expectedData)
-	moduleName = self.directories.getModuleNameFromPath(expectedData)
-	diffFileDestination = self.modulesWithPaths[moduleName][self.outputIdx] + testName + "_diffFile.txt"
-	bashcommand = ("diff " + expectedData + " " + outputData + " > " + diffFileDestination)
-	process = sub.Popen(bashCommand)         
-	#for expectedLine in expectedData:
-            #for outputLine in outputData:
-                #do some comparison
+	    testName = self.directories.getNameFromFile(expectedData)
+	    moduleName = self.directories.getModuleNameFromPath(expectedData)
+	    diffFileDestination = self.modulesWithPaths[moduleName][self.outputIdx] + testName + "_diffFile.txt"
+        print diffFileDestination
+	    bashcommand = ("diff " + expectedData + " " + outputData + " > " + diffFileDestination)
+	    process = sub.Popen(bashCommand)         
+	    #for expectedLine in expectedData:
+                #for outputLine in outputData:
+                    #do some comparison
 
     def copyTransactionSummaryToOutput(self, testOutputDir, testFile):
         testName = self.directories.getTestNameFromFile(testFile)
