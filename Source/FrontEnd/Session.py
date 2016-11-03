@@ -3,6 +3,7 @@ from FrontEndValidator import FrontEndValidator
 from ValidAccounts import ValidAccounts
 from Transactions import Transactions
 import os
+import sys
 #The session class represents a logged in session for simbank, on creation of the class
 #there exists a transaction record, the valid accounts class, if the current class of session is an admin
 #if the current session is ready (i.e logged in, not logged off), and if the current session is logged in
@@ -70,8 +71,11 @@ class Session:
 	def getInput(self, printStatement=""):
 		if len(printStatement) == 0:
 			printStatement = "Enter a command : "
-		userInput = raw_input(printStatement)
-		if len(userInput) > 0:
+		try:
+                    userInput = raw_input(printStatement)
+		except EOFError:
+                    sys.exit()          
+                if len(userInput) > 0:
 			return userInput
 		else:
 			print "Command cannot be length 0"

@@ -24,8 +24,11 @@ newWorkingDir = os.path.dirname(os.path.realpath(__file__))
 os.chdir(newWorkingDir)
 #until a logon is sucessful the following loop will continue to run
 while True:
-	userInput = raw_input("Enter a command : ")
-	session = Session(userInput, accountsFile, transactionFile)
+	try:
+            userInput = raw_input("Enter a command : ")
+	except(EOFError):
+            sys.exit()
+        session = Session(userInput, accountsFile, transactionFile)
 	if session.isReady is True:
 		break
 print("Welcome!")
