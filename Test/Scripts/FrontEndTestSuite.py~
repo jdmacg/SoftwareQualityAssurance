@@ -38,6 +38,7 @@ class FrontEndTestSuite:
                 if "ConsoleOutput" in outputFile:
                     continue
                 elif "TranscationOutput" in outputFile:
+                    print "hello"
                     testName = self.directories.getModuleNameFromPath(outputFile)
                     expectedFile = [file for file in expectedFiles if testName in file]
                     outputFileData = open(outputFile).readlines()
