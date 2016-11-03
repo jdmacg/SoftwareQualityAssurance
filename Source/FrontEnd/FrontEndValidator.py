@@ -53,7 +53,7 @@ class FrontEndValidator:
     #inputs: Account number of account to create
     #outputs: True/false, true if the account is created
     #description: Checks if the account number given is 8 digits, does not start with 0, and does not already exist
-    def isValidAccountNumberToCreate(self,accountNumber, isTransactionCheck=False):
+    def isValidAccountNumberToCreate(self,validAccounts,invalidAccounts,accountNumber, isTransactionCheck=False):
         if len(str(accountNumber)) != 8:
             print "Must be exactly 8 digits"
             return False
@@ -61,7 +61,7 @@ class FrontEndValidator:
             print "Numbers cannot start with 0"
             return False
         if isTransactionCheck is False:
-            if self.checkValidAccount(accountNumber) == True:
+            if self.checkValidAccount(validAccounts,invalidAccounts, accountNumber) == True:
                 print "Account number already exists"
                 return False
         else:
