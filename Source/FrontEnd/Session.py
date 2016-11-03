@@ -102,7 +102,7 @@ class Session:
 	def create(self):
 		accountNumber = self.getInput("Please enter account number: ")
 		accountName = self.getInput("Please enter account name: ")
-		if self.frontEndValidator.isValidAccountNumberToCreate(accountNumber) and \
+		if self.frontEndValidator.isValidAccountNumberToCreate(self.frontEndValidator.validAccounts, self.frontEndValidator.invalidAccounts, accountNumber) and \
 			self.frontEndValidator.isValidAccountNameToCreate(accountName) and \
 				self.admin is True:
 				self.validAccount.createAccount(accountName, accountNumber )
