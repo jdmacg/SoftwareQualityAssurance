@@ -28,7 +28,6 @@ class Session:
 		self.admin = None
 		self.isReady = False
                 userInput = userInput.strip()    
-
 		if userInput == "login":
 			while userInput != "agent" and userInput != "atm":
                                 if not isRunningFromFile:
