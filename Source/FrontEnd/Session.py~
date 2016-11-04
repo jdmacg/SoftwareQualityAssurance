@@ -28,7 +28,8 @@ class Session:
 		self.admin = None
 		self.isReady = False
 		self.isLoggedIn = True
-                
+                userInput = userInput.strip()    
+
 		if userInput == "login":
 			while userInput != "agent" and userInput != "atm":
                                 if not isRunningFromFile:
@@ -50,6 +51,7 @@ class Session:
 	#description: A large if statement with all of the command cases, given one of the valid commands calls the necessary
 	#method to execute the command
 	def runCommand(self,userInput):
+                userInput = userInput.strip()
 		if userInput == "create":
 			self.create()
 		elif userInput == "delete":
@@ -102,7 +104,7 @@ class Session:
 	def create(self):
 		accountNumber = self.getInput("Please enter account number: ")
 		accountName = self.getInput("Please enter account name: ")
-		if self.frontEndValidator.isValidAccountNumberToCreate(self.frontEndValidator.validAccounts, self.frontEndValidator.invalidAccounts, accountNumber) and \
+		if self.frontEndValidator.isValidAccountNumberToCreate(self.validAccount.validAccounts, self.validAccount.invalidAccounts, accountNumber) and \
 			self.frontEndValidator.isValidAccountNameToCreate(accountName) and \
 				self.admin is True:
 				self.validAccount.createAccount(accountName, accountNumber )
