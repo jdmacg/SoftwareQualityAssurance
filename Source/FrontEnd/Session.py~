@@ -62,7 +62,7 @@ class Session:
 			self.withdraw()
 		elif userInput == "transfer":
 			self.transfer()
-		elif userInput == "logout":
+		elif userInput == "logout" and self.isLoggedIn == True:
                         self.isLoggedIn = False
 			self.transactionRecords.writeTransactonFile()
 		else:
