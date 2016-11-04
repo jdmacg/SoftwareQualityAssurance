@@ -3,3 +3,4 @@ logout
 withdraw
 10000322
 40000
+\n

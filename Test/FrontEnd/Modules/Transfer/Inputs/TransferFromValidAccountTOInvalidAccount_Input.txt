@@ -5,3 +5,4 @@ transfer
 11357121
 100
 logout
+\n

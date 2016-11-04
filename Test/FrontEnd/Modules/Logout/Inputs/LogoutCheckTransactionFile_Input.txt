@@ -5,3 +5,4 @@ transfer
 10000327
 500
 logout
+\n
