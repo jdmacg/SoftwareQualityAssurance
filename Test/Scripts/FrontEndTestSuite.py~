@@ -46,9 +46,9 @@ class FrontEndTestSuite:
                     print "outputFile", outputFile
                     testName = self.directories.getModuleNameFromOutputPath(outputFile)
                     expectedFile = [file for file in expectedFiles if testName in file]
-                    outputFileData = open(outputFile).readlines()
-                    expectedfileData = open(expectedFile).readlines()
-                    comparison = self.compareFiles(expectedFiles, outputFiles)
+                    #outputFileData = open(outputFile).readlines()
+                    #expectedfileData = open(expectedFile).readlines()
+                    comparison = self.compareFiles(expectedFile, outputFile)
 
     def compareFiles(self, expectedData, outputData):
         testName = self.directories.getNameFromFile(expectedData)
