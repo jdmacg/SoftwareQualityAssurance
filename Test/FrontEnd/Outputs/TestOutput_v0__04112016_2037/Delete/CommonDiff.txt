@@ -1,0 +1,15 @@
+----DeleteWithIncorrectAccountNumber----
+2d1
+< 
+----TransactionOnDeletedAccount----
+3d2
+< 
+----CreateAnAccountFromADeletedAccountNumber----
+1a2
+> CR 11111110 00000000 000 newTestAccount
+3d3
+< 
+----DeleteAsAgent----
+3d2
+< 
+----DeleteAsATM----

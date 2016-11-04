@@ -60,6 +60,7 @@ class FrontEndTestSuite:
         stderr=sub.STDOUT)      
         commonDiff = open(commonDiffPath, "a")
 	commonDiff.write("----" + testName + "----")
+	commonDiff.write("\n")
         for line in process.stdout.read():
             commonDiff.write(line)
         commonDiff.close()
