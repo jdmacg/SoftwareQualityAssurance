@@ -25,11 +25,11 @@ class FrontEndValidator:
     #account exists
     def checkValidAccount(self, validAccounts, invalidAccounts, accountOfInterest):
 
-        for key in invalidAccounts:
-            if accountOfInterest == key:
-                return True
-        for existingAccounts in validAccounts :
-            if existingAccounts == accountOfInterest:
+        for account in invalidAccounts:
+            if accountOfInterest == account:
+                return False
+        for account in validAccounts :
+            if account == accountOfInterest:
                 return True
         return False
         # inputs: amount to be withdrawn, account to be withdrawn from, amount that has been withdrawn in the current session, if the current session is admin

@@ -105,10 +105,10 @@ class Session:
 	def create(self):
 		accountNumber = self.getInput("Please enter account number: ")
 		accountName = self.getInput("Please enter account name: ")
-		for key in self.validAccount.createdAccounts:
-				if key == accountNumber:
-						print "Account already exists"
-						return
+                for account in self.validAccount.createdAccounts:
+			if account == accountNumber:
+				print "Account already created"
+				return
 		if self.frontEndValidator.isValidAccountNumberToCreate(self.validAccount.validAccounts, self.validAccount.invalidAccounts, accountNumber) and \
 			self.frontEndValidator.isValidAccountNameToCreate(accountName) and \
 				self.admin is True:
@@ -139,8 +139,8 @@ class Session:
 	#description: Asks for the account number to deposist to and the amount to deposist. throughout the method various other
 	#methods are called to check that the data is valid
 	def deposit(self):
-		accountNumber = self.getInput("Enter account number to deposit to: ")
-		if not self.frontEndValidator.checkValidAccount(self.validAccount.validAccounts, self.validAccount.invalidAccounts, accountNumber):
+                accountNumber = self.getInput("Enter account number to deposit to: ")
+                if not self.frontEndValidator.checkValidAccount(self.validAccount.validAccounts, self.validAccount.invalidAccounts, accountNumber):
 			print accountNumber, " is an invalid account number"
 			return
 		requestedAmount = self.getInput("Enter amount to deposit: ")
