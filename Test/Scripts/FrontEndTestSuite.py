@@ -53,10 +53,10 @@ class FrontEndTestSuite:
     def compareFiles(self, expectedData, outputData, testName):
         testName = testName
         print "Look here please testname :::::::::::: ",testName        
-        pathLocation = outputData - testName
+        pathLocation = outputData.replace(testName,"")
         print "Look here please :::::::::::: ",pathLocation
-        moduleName = self.directories.getModuleNameFromPath(expectedData)
-        diffFileDestination = self.modulesWithPaths[moduleName][self.outputIdx] + testName + "_diffFile.txt"
+        #moduleName = self.directories.getModuleNameFromPath(expectedData)
+        diffFileDestination = pathLocation + testName.replace("_TransactionOutput.txt", "") + "_diffFile.txt" #self.modulesWithPaths[moduleName][self.outputIdx] + testName + "_diffFile.txt"
         #print diffFileDestination
         bashcommand = ("diff " + expectedData + " " + outputData + " > " + diffFileDestination)
         process = sub.Popen(bashCommand)         
