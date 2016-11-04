@@ -44,7 +44,7 @@ class FrontEndTestSuite:
                 elif "TransactionOutput" in outputFile:
                     print "#2"
                     print "outputFile", outputFile
-                    testName = self.directories.getModuleNameFromPath(outputFile)
+                    testName = self.directories.getModuleNameFromOutputPath(outputFile)
                     expectedFile = [file for file in expectedFiles if testName in file]
                     outputFileData = open(outputFile).readlines()
                     expectedfileData = open(expectedFile).readlines()
