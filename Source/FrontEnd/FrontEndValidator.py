@@ -64,8 +64,7 @@ class FrontEndValidator:
             if self.checkValidAccount(validAccounts,invalidAccounts, accountNumber) == True:
                 print "Account number already exists"
                 return False
-        else:
-            return True
+        return True
     #inputs: Account name
     #outputs: true/false, true if the account name is valid
     #description: Checks if the account name is between 3-30 characters, and that it does not start or end with " "
