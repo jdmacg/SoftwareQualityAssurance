@@ -27,7 +27,6 @@ class Session:
 		self.frontEndValidator = FrontEndValidator()
 		self.admin = None
 		self.isReady = False
-		self.isLoggedIn = True
                 userInput = userInput.strip()    
 
 		if userInput == "login":
@@ -40,9 +39,11 @@ class Session:
 			if userInput == "agent":
 				self.admin = True
 				self.isReady = True
+                self.isLoggedIn = True
 			elif userInput == "atm" :
 				self.admin = False
 				self.isReady = True
+                self.isLoggedIn = True
 		else:
 			print "You must log in using 'login' command"
 
@@ -63,7 +64,7 @@ class Session:
 		elif userInput == "transfer":
 			self.transfer()
 		elif userInput == "logout" and self.isLoggedIn == True:
-                        self.isLoggedIn = False
+            self.isLoggedIn = False
 			self.transactionRecords.writeTransactonFile()
 		else:
 			print "Not a valid command"

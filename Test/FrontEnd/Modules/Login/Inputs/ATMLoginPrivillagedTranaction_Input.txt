@@ -2,5 +2,5 @@ login
 atm
 deposit
 10000327
-50000
+500000
 logout
