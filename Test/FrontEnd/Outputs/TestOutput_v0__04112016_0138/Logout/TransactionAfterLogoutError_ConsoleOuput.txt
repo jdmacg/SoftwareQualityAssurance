@@ -1,7 +1,0 @@
-Enter a command : Enter a command : Please enter 'atm' or 'agent'
-Enter a command : Please enter 'atm' or 'agent'
-Enter a command : Please enter 'atm' or 'agent'
-Enter a command : Please enter 'atm' or 'agent'
-Enter a command : Command cannot be length 0
-Please enter 'atm' or 'agent'
-Enter a command : 

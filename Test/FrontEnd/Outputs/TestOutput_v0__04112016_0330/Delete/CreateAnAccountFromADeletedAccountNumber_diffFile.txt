@@ -1,6 +1,0 @@
-1c1
-< DL 11111110 00000000 000 testAcccount
----
-> DL 11111110 00000000 000 testAccount
-3d2
-< 

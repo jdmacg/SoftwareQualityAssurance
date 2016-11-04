@@ -1,6 +1,0 @@
-Enter a command : Enter a command : Valid accounts file has been sucessfully loaded.
-Welcome!
-Enter a command : Please enter account number: Please enter account name: Account deleted
-Enter a command : Enter account number to deposit to: 11111110  is an invalid account number
-Enter a command : Not a valid command
-Enter a command : Goodbye!

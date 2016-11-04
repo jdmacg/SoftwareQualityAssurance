@@ -1,7 +1,0 @@
-Enter a command : Enter a command : Valid accounts file has been sucessfully loaded.
-Welcome!
-Enter a command : Enter account number to withdraw from: 11311110  is an invalid account number
-Enter a command : Not a valid command
-Enter a command : Not a valid command
-Enter a command : Not a valid command
-Enter a command : 

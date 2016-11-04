@@ -1,4 +1,0 @@
-Enter a command : Enter a command : Valid accounts file has been sucessfully loaded.
-Welcome!
-Enter a command : Enter account number to withdraw from: Enter amount to withdraw: invalid amount requested
-Enter a command : Goodbye!

@@ -1,6 +1,0 @@
-Enter a command : Enter a command : Valid accounts file has been sucessfully loaded.
-Welcome!
-Enter a command : Not running as atm mode!
-Enter a command : Not a valid command
-Enter a command : Not a valid command
-Enter a command : Goodbye!
