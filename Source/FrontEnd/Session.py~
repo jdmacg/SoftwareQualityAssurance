@@ -39,11 +39,11 @@ class Session:
 			if userInput == "agent":
 				self.admin = True
 				self.isReady = True
-                self.isLoggedIn = True
+				self.isLoggedIn = True
 			elif userInput == "atm" :
 				self.admin = False
 				self.isReady = True
-                self.isLoggedIn = True
+				self.isLoggedIn = True
 		else:
 			print "You must log in using 'login' command"
 
