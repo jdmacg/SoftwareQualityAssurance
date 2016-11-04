@@ -51,8 +51,7 @@ class FrontEndTestSuite:
                     comparison = self.compareFiles(expectedFile, outputFile)
 
     def compareFiles(self, expectedData, outputData):
-        fileData = open(expectedData).readlines()
-        testName = self.directories.getTestNameFromFile(fileData)
+        testName = outputData
         moduleName = self.directories.getModuleNameFromPath(expectedData)
         diffFileDestination = self.modulesWithPaths[moduleName][self.outputIdx] + testName + "_diffFile.txt"
         #print diffFileDestination
