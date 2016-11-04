@@ -1,0 +1,4 @@
+0a1
+> DL 11111110 00000000 000 testAccountWrongName
+2d2
+< 
