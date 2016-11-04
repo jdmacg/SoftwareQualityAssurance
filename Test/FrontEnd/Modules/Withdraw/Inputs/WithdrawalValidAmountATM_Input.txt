@@ -4,4 +4,4 @@ withdraw
 11111110
 100
 logout
-\n
+

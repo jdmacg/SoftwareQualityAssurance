@@ -3,4 +3,5 @@ atm
 create
 96111110
 testAccount
-logout\n
+logout
+

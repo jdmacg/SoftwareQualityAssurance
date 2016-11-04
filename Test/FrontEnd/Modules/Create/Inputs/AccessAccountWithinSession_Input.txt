@@ -6,4 +6,5 @@ testAccount
 deposit
 91563256
 500
-logout\n
+logout
+

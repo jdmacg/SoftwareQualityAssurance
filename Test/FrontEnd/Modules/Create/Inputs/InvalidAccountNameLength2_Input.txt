@@ -3,4 +3,5 @@ agent
 create
 11111110
 hi
-logout\n
+logout
+

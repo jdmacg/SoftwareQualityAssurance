@@ -3,4 +3,5 @@ agent
 create
 accountNumber
 testAccount
-logout\n
+logout
+

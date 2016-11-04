@@ -3,5 +3,5 @@ agent
 withdraw
 11111110
 10000000
-logout\n
- \n
+logout
+
