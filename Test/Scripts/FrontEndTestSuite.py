@@ -43,9 +43,10 @@ class FrontEndTestSuite:
                     expectedFile = [expectedFile for expectedFile in expectedFiles if testName.upper() in expectedFile.upper()]
                     
                     expectedFile = expectedFile[0]
-                    comparison = self.compareFiles(expectedFile, outputFile, testName, moduleOutputDir)
+                    commonDiffPath = moduleOutputDir + "CommonDiff.txt"
+                    comparison = self.compareFiles(expectedFile, outputFile, testName, moduleOutputDir, commonDiffPath)
 
-    def compareFiles(self, expectedFile, outputFile, testName, moduleOutputDir):
+    def compareFiles(self, expectedFile, outputFile, testName, moduleOutputDir, commonDiffPath):
         diffFileDestination = moduleOutputDir + testName + "_diffFile.txt" 
         process = sub.Popen(["diff", expectedFile, outputFile,]
         ,stdout=sub.PIPE,
@@ -54,6 +55,10 @@ class FrontEndTestSuite:
         for line in process.stdout.read():
             diffFile.write(line)
         diffFile.close()      
+        commonDiff = open(commonDiffPath, "a")
+        for line in process.stdout.read():
+            commonDiff.write(line)
+        commonDiff.close()
         #pdb.set_trace()
 
     def copyTransactionSummaryToOutput(self, testOutputDir, testFile):
