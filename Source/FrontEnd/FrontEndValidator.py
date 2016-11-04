@@ -27,7 +27,7 @@ class FrontEndValidator:
 
         for key in invalidAccounts:
             if accountOfInterest == key:
-                return False
+                return True
         for existingAccounts in validAccounts :
             if existingAccounts == accountOfInterest:
                 return True
