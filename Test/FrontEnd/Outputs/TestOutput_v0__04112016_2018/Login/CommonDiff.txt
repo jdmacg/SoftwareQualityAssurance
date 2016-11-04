@@ -1,0 +1,12 @@
+----AgentLoginPrivillagedTranaction----3d2
+< 
+----TransactionsBeforeLoggingIn----1d0
+< 
+----LoginAsAgent--------LoginWithoutChoosingATMOrAgent----1d0
+< 
+----LoginInvalidInput----1d0
+< 
+----LoginAsATM----2d1
+< 
+----ATMLoginPrivillagedTranaction----2d1
+< 
