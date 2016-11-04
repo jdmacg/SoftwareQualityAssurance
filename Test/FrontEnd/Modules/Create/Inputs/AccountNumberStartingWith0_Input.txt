@@ -3,4 +3,4 @@ agent
 create
 01111110
 testAccount
-logout
+logout\n

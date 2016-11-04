@@ -3,4 +3,4 @@ agent
 create
 11111110
 thissentenceislongerthan30alphanumericcharacters
-logout
+logout\n

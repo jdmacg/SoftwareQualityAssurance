@@ -1,0 +1,5 @@
+Enter a command : Enter a command : Valid accounts file has been sucessfully loaded.
+Welcome!
+Enter a command : Please enter account number: Please enter account name: Must be exactly 8 digits
+Enter a command : Not a valid command
+Enter a command : 

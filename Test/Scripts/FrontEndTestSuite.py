@@ -31,38 +31,30 @@ class FrontEndTestSuite:
     def compareTransactionTestResults(self):
         for moduleName in self.modulesWithPaths:
             moduleInputDir = self.modulesWithPaths[moduleName][self.inputIdx]
-            print "module input dir: ", moduleInputDir
             moduleOutputDir = self.modulesWithPaths[moduleName][self.outputIdx]
             moduleExpectedDir = self.directories.getTestExpectedDir(moduleInputDir)
-            ##print moduleExpectedDir
             outputFiles = self.directories.getTestFiles(moduleOutputDir)
             expectedFiles = self.directories.getTestFiles(moduleExpectedDir)
-            print "expected Files:" , expectedFiles
             for outputFile in outputFiles:
                 if "ConsoleOutput" in outputFile:
                     continue
                 elif "TransactionOutput" in outputFile:
-                    print "#2"
-                    print "outputFile", outputFile
                     testName = self.directories.getModuleNameFromOutputPath(outputFile)
-                    expectedFile = [file for file in expectedFiles if testName in file]
-                    #outputFileData = open(outputFile).readlines()
-                    #expectedfileData = open(expectedFile).readlines()
-                    comparison = self.compareFiles(expectedFile, outputFile, testName)
+                    expectedFile = [expectedFile for expectedFile in expectedFiles if testName.upper() in expectedFile.upper()]
+                    
+                    expectedFile = expectedFile[0]
+                    comparison = self.compareFiles(expectedFile, outputFile, testName, moduleOutputDir)
 
-    def compareFiles(self, expectedData, outputData, testName):
-        testName = testName
-        print "Look here please testname :::::::::::: ",testName        
-        pathLocation = outputData.replace(testName,"")
-        print "Look here please :::::::::::: ",pathLocation
-        #moduleName = self.directories.getModuleNameFromPath(expectedData)
-        diffFileDestination = pathLocation + testName.replace("_TransactionOutput.txt", "") + "_diffFile.txt" #self.modulesWithPaths[moduleName][self.outputIdx] + testName + "_diffFile.txt"
-        #print diffFileDestination
-        bashcommand = ("diff " + expectedData + " " + outputData + " > " + diffFileDestination)
-        process = sub.Popen(bashCommand)         
-        #for expectedLine in expectedData:
-                #for outputLine in outputData:
-                    #do some comparison
+    def compareFiles(self, expectedFile, outputFile, testName, moduleOutputDir):
+        diffFileDestination = moduleOutputDir + testName + "_diffFile.txt" 
+        process = sub.Popen(["diff", expectedFile, outputFile,]
+        ,stdout=sub.PIPE,
+        stderr=sub.STDOUT)
+        diffFile = open(diffFileDestination, 'w+')
+        for line in process.stdout.read():
+            diffFile.write(line)
+        diffFile.close()      
+        #pdb.set_trace()
 
     def copyTransactionSummaryToOutput(self, testOutputDir, testFile):
         testName = self.directories.getTestNameFromFile(testFile)
@@ -87,7 +79,6 @@ class FrontEndTestSuite:
         #calls the bash script, returns the script output
         testOutput = sub.check_output([self.directories.runScript, self.directories.frontEndProgram, testFile])
         return testOutput
-
 
 frontEndTestSuite = FrontEndTestSuite()
 frontEndTestSuite.runTests()

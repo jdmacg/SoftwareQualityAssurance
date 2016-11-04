@@ -1,0 +1,3 @@
+Enter a command : Enter a command : Valid accounts file has been sucessfully loaded.
+Welcome!
+Enter a command : Goodbye!

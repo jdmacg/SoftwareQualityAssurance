@@ -1,5 +1,0 @@
-/home/ec2-user/327/SoftwareQualityAssurance/Test/Scripts
-Enter a command : Enter a command : Valid accounts file has been sucessfully loaded.
-Welcome!
-Enter a command : Please enter account number: Please enter account name: Numbers cannot start with 0
-Enter a command : Goodbye!

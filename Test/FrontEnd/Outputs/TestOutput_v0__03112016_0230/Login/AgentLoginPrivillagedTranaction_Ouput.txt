@@ -1,5 +1,0 @@
-/home/ec2-user/327/SoftwareQualityAssurance/Test/Scripts
-Enter a command : Enter a command : Valid accounts file has been sucessfully loaded.
-Welcome!
-Enter a command : Enter account number to deposit to: Enter amount to deposit: Amount $10000.00 has been deposited
-Enter a command : Goodbye!

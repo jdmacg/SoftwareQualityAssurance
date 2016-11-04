@@ -83,15 +83,10 @@ class Directories:
         return path[:slashIdx]
 
     def getModuleNameFromOutputPath (self, path):
-        testOutputIdx = path.index("TestOutput")
-        leftSlashIdx = path.index(self.slash, testOutputIdx)
-        leftSlashIdx += 28
-        rightSlashIdx = len(path)
-        if self.slash in path[leftSlashIdx + 1:]:
-            rightSlashIdx = path.index(self.slash, leftSlashIdx + 1)
-        print "module nume: ", path[leftSlashIdx + 1 : rightSlashIdx]
-        return path[leftSlashIdx + 1: rightSlashIdx]        
-        
+        leftSlashIdx = path.rindex(self.slash)
+        underScoreIdx = path.rindex("_")
+        #pdb.set_trace()
+        return path[leftSlashIdx + 1: underScoreIdx]
 
     def getModuleNameFromPath(self, path):
         moduleIdx = path.index("Modules")

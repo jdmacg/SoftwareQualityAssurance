@@ -3,4 +3,5 @@ atm
 withdraw
 11111110
 100000000
-logout
+logout\n
+ \n

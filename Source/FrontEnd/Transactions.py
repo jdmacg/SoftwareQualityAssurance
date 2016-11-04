@@ -20,6 +20,7 @@ class Transactions:
         for transaction in self.transactionList:
             f.write("".join(transaction) + "\n")
         f.write("ES 00000000 00000000 000 ***")
+        f.write("\n")
         f.close()
 
 

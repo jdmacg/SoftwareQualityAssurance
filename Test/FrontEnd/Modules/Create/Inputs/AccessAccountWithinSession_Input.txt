@@ -6,4 +6,4 @@ testAccount
 deposit
 11111110
 500
-logout
+logout\n

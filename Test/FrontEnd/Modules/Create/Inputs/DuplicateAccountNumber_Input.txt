@@ -9,4 +9,4 @@ newTestAccount
 delete
 11111111
 testAccount
-logout
+logout\n

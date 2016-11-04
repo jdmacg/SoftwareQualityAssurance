@@ -2,6 +2,6 @@ login
 atm
 transfer
 11111110
-11111121
+11357121
 100
 logout

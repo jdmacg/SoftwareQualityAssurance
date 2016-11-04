@@ -1,0 +1,4 @@
+Enter a command : Enter a command : Valid accounts file has been sucessfully loaded.
+Welcome!
+Enter a command : Enter account number to transfer from: Enter account number to transfer to: Enter amount to Transfer: Amount $100000.00 has been transferred to 11111120
+Enter a command : Goodbye!
