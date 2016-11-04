@@ -96,7 +96,7 @@ class Session:
 			accountName = self.getInput("Please enter account name: ")
 			if self.validAccount.deleteAccount(accountNumber, accountName) == True:
 			    self.transactionRecords.appendToTransactionFile(transactionCodes['delete'], firstAccount=accountNumber, accountName=accountName)
-                self.validAccount.invalidAccounts[accountNumber] = accountName
+                	    self.validAccount.invalidAccounts[accountNumber] = accountName
 
 	#inputs: none
 	#outputs: none
