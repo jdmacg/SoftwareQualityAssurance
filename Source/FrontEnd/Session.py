@@ -95,8 +95,8 @@ class Session:
 			accountNumber = self.getInput("Please enter account number: ")
 			accountName = self.getInput("Please enter account name: ")
 			if self.validAccount.deleteAccount(accountNumber, accountName) == True:
-			    self.transactionRecords.appendToTransactionFile(transactionCodes['delete'], firstAccount=accountNumber, accountName=accountName)
-                	    self.validAccount.invalidAccounts[accountNumber] = accountName
+				self.transactionRecords.appendToTransactionFile(transactionCodes['delete'], firstAccount=accountNumber, accountName=accountName)
+				self.validAccount.invalidAccounts[accountNumber] = accountName
 
 	#inputs: none
 	#outputs: none
@@ -105,10 +105,15 @@ class Session:
 	def create(self):
 		accountNumber = self.getInput("Please enter account number: ")
 		accountName = self.getInput("Please enter account name: ")
+		for key in self.validAccount.createdAccounts:
+				if key == accountNumber:
+						print "Account already exists"
+						return
 		if self.frontEndValidator.isValidAccountNumberToCreate(self.validAccount.validAccounts, self.validAccount.invalidAccounts, accountNumber) and \
 			self.frontEndValidator.isValidAccountNameToCreate(accountName) and \
 				self.admin is True:
 				self.validAccount.createAccount(accountName, accountNumber )
+				self.validAccount.createdAccounts[accountNumber] = accountName
 				self.transactionRecords.appendToTransactionFile(transactionCodes['create'], firstAccount=accountNumber,
 														accountName=accountName)
 	#inputs : none

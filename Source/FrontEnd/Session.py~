@@ -96,6 +96,7 @@ class Session:
 			accountName = self.getInput("Please enter account name: ")
 			if self.validAccount.deleteAccount(accountNumber, accountName) == True:
 			    self.transactionRecords.appendToTransactionFile(transactionCodes['delete'], firstAccount=accountNumber, accountName=accountName)
+                	    self.validAccount.invalidAccounts[accountNumber] = accountName
 
 	#inputs: none
 	#outputs: none
@@ -108,6 +109,7 @@ class Session:
 			self.frontEndValidator.isValidAccountNameToCreate(accountName) and \
 				self.admin is True:
 				self.validAccount.createAccount(accountName, accountNumber )
+				self.validAccount.createdAccounts[accountNumber] = accountName
 				self.transactionRecords.appendToTransactionFile(transactionCodes['create'], firstAccount=accountNumber,
 														accountName=accountName)
 	#inputs : none
