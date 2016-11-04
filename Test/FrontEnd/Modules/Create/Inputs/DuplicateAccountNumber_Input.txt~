@@ -1,0 +1,12 @@
+login
+agent
+create
+11111111
+testAccount
+create
+11111111
+newTestAccount
+delete
+11111111
+testAccount
+logout\n
