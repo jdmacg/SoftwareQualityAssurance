@@ -1,8 +1,8 @@
 login
 atm
 transfer
-1
 10000327
+10000223
 500
 logout
 \n

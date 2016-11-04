@@ -1,4 +1,5 @@
 login
+atm
 logout
 withdraw
 10000322
