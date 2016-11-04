@@ -54,7 +54,10 @@ class FrontEndTestSuite:
         diffFile = open(diffFileDestination, 'w+')
         for line in process.stdout.read():
             diffFile.write(line)
-        diffFile.close()      
+        diffFile.close()
+        process = sub.Popen(["diff", expectedFile, outputFile,]
+        ,stdout=sub.PIPE,
+        stderr=sub.STDOUT)      
         commonDiff = open(commonDiffPath, "a")
         for line in process.stdout.read():
             commonDiff.write(line)
