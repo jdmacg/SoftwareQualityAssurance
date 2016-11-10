@@ -1,0 +1,15 @@
+----WithdrawalInvalidAmountAsATM----
+2d1
+< \n
+----WithdrawalValidAmountATM----
+3d2
+< 
+----WithdrawalValidAmountFromInvalidAccount----
+2d1
+< \n
+----WithdrawalValidAmountAgent----
+3d2
+< 
+----WithdrawalInvalidAmountAsAgent----
+2d1
+< \n

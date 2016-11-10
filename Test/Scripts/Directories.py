@@ -48,10 +48,20 @@ class Directories:
         self.numTestRuns += 1
         return testOutputPath
 
+    def getTransactionSummaryFile(self):
+        return self.frontendSourceDir + self.slash + "TransactionSummary.txt"
+
     def getTestInputFiles(self, modulePath):
         inputDir = self.getTestInputDir(modulePath)
         testFiles = os.listdir(inputDir)
         testFiles = [inputDir + self.slash + testFile for testFile in testFiles if '.' in testFile]
+        return testFiles
+
+    def getTestFiles(self, modulePath):
+        print modulePath
+        testFiles = os.listdir(modulePath)
+        #removed slash here
+        testFiles = [modulePath + testFile for testFile in testFiles if '.' in testFile]
         return testFiles
 
     def getModulesToTest(self):
@@ -62,8 +72,21 @@ class Directories:
     def getTestInputDir(self, testPath):
         return testPath + self.slash + "Inputs"
 
-    def getTestExpectedDir(self, testPath):
-        return testPath + self.slash + "ExpectedOutputs"
+    def getTestExpectedDir(self, testInputPath):
+        #removed going up a directory here
+        return testInputPath + self.slash + "Expected" + self.slash
+
+    def upDirectory(self, path):
+        slashIdx = path.rindex(self.slash)
+        if path[-1] == self.slash:
+            slashIdx = path.rindex(self.slash, end=len(path) - 1)
+        return path[:slashIdx]
+
+    def getModuleNameFromOutputPath (self, path):
+        leftSlashIdx = path.rindex(self.slash)
+        underScoreIdx = path.rindex("_")
+        #pdb.set_trace()
+        return path[leftSlashIdx + 1: underScoreIdx]
 
     def getModuleNameFromPath(self, path):
         moduleIdx = path.index("Modules")

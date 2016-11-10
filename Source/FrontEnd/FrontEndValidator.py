@@ -25,11 +25,11 @@ class FrontEndValidator:
     #account exists
     def checkValidAccount(self, validAccounts, invalidAccounts, accountOfInterest):
 
-        for key in invalidAccounts:
-            if accountOfInterest == key:
+        for account in invalidAccounts:
+            if accountOfInterest == account:
                 return False
-        for existingAccounts in validAccounts :
-            if existingAccounts == accountOfInterest:
+        for account in validAccounts :
+            if account == accountOfInterest:
                 return True
         return False
         # inputs: amount to be withdrawn, account to be withdrawn from, amount that has been withdrawn in the current session, if the current session is admin
@@ -53,7 +53,7 @@ class FrontEndValidator:
     #inputs: Account number of account to create
     #outputs: True/false, true if the account is created
     #description: Checks if the account number given is 8 digits, does not start with 0, and does not already exist
-    def isValidAccountNumberToCreate(self,validAccounts,invalidAccounts, accountNumber, isTransactionCheck=False):
+    def isValidAccountNumberToCreate(self,validAccounts,invalidAccounts,accountNumber,isTransactionCheck=False):
         if len(str(accountNumber)) != 8:
             print "Must be exactly 8 digits"
             return False
@@ -61,11 +61,10 @@ class FrontEndValidator:
             print "Numbers cannot start with 0"
             return False
         if isTransactionCheck is False:
-            if self.checkValidAccount(validAccounts, invalidAccounts, accountNumber) == True:
+            if self.checkValidAccount(validAccounts,invalidAccounts, accountNumber) == True:
                 print "Account number already exists"
                 return False
-        else:
-            return True
+        return True
     #inputs: Account name
     #outputs: true/false, true if the account name is valid
     #description: Checks if the account name is between 3-30 characters, and that it does not start or end with " "

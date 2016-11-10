@@ -1,0 +1,8 @@
+login
+agent
+transfer
+11111110
+11111120
+10000000
+logout
+\n

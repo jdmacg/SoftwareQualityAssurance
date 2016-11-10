@@ -1,0 +1,13 @@
+login
+agent
+create
+98111111
+testAccount
+create
+98111111
+newTestAccount
+delete
+98111111
+testAccount
+logout
+

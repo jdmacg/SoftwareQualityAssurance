@@ -1,0 +1,8 @@
+login
+atm
+transfer
+11111110
+11357121
+100
+logout
+\n

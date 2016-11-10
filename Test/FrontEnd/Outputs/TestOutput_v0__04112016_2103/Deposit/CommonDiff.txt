@@ -1,0 +1,19 @@
+----DepositValidAtm----
+3d2
+< 
+----DepositValidAgentOver1000----
+3d2
+< 
+----DepositInvalidAgent----
+2d1
+< 
+----DepositInvalidAtm----
+2d1
+< 
+----DepositValidAgent----
+1c1
+< DE 11111110 00000000 1000000 ***
+---
+> DE 11111110 00000000 100 ***
+3d2
+< 

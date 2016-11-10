@@ -6,7 +6,7 @@ class Transactions:
         self.transactionFile = transactionFile
         self.transactionList = []
         self.frontEndValidator = FrontEndValidator()
-
+        open(transactionFile, 'w').close()
 
     #this appends transactions to the list representing hte transaction file, if it is of the valid form
     def appendToTransactionFile(self, transactionCode, firstAccount="00000000", secondAccount="00000000", amount="000", accountName="***"):
@@ -19,7 +19,8 @@ class Transactions:
         f = open(self.transactionFile, 'w')
         for transaction in self.transactionList:
             f.write("".join(transaction) + "\n")
-        f.write("ES")
+        f.write("ES 00000000 00000000 000 ***")
+        f.write("\n")
         f.close()
 
 

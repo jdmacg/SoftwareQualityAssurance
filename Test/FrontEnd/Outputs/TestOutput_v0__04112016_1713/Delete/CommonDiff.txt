@@ -1,0 +1,30 @@
+0a1
+> DL 11111110 00000000 000 testAccountWrongName
+2d2
+< 
+0a1
+> DL 13911120 00000000 000 testAccount
+2d2
+< 
+3d2
+< 
+1c1
+< DL 11111110 00000000 000 testAcccount
+---
+> DL 11111110 00000000 000 testAccount
+3d2
+< 
+2,3c2,3
+< WD 11111110 00000000 1000 ***
+< DL 11111110 00000000 000 accountName
+---
+> DL 11111110 00000000 000 testAccount
+> DL 11111110 00000000 000 testAccount
+5d4
+< 
+1c1
+< DL 11111110 00000000 0000 testAccount
+---
+> DL 11111110 00000000 000 testAccount
+3d2
+< 

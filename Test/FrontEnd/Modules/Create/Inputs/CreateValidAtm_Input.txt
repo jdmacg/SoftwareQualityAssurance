@@ -1,0 +1,7 @@
+login
+atm
+create
+96111110
+testAccount
+logout
+
