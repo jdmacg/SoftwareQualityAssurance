@@ -29,6 +29,8 @@ class Account:
 	#Output: nothing
 	#Description: increases the amount of money in this account
 	def depositMoney(self, amount):
+		if self.amount + int(amount) > 99999999:
+			return false
 		self.amount += int(amount)
 		return True
 
@@ -37,9 +39,9 @@ class Account:
 	#Description: withdraws specified amount from this account,
 	#deposits money of specified ammount in other account
 	def transfer(self, amount, toAccount):
-		if self.withdrawMoney(amount) :
-			toAccount.depositMoney(amount)
-			return True
+		if self.withdrawMoney(amount):
+			if toAccount.depositMoney(amount):
+				return True
 		return False
 
 	#Input: Name of account
