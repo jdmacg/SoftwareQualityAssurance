@@ -13,6 +13,7 @@ class BackEnd:
 		self.nameIdx = 2
 		self.masterAccountListName = "MasterAccountList.txt"
 		self.mergedTransactionSummaryFileName = "MergedTransactionSummaryFile.txt"
+		self.validAccountsFile = "ValidAccountsFile.txt"
 		self.accountDict = self.readAccountDictFromFile()
 
 	#Input: Old Master Account List File
@@ -34,17 +35,21 @@ class BackEnd:
 	#Input: Dictionary of all accounts
 	#Output: New Master Account List File
 	#Description: Formats all the accounts at the end of a backend session into a text file
-	def writeMasterAccountList(self):
+	def writeAccountsFiles(self):
 		masterAccountList = []
 		for key in self.accountDict:
 			masterAccountList.append(self.accountDict[key])
 
 		masterAccountList = sorted(masterAccountList, key=lambda x: x.account)
 		masterAccountListFile = open(self.masterAccountListName, 'w+')
+		validAccountsListFile = open(self.validAccountsFile, 'w+')
 		for account in masterAccountList:
-			lineToWrite = str(account.account) + " " + str(account.amount) + " " + str(account.name)
-			masterAccountListFile.write(lineToWrite)
+			masterLineToWrite = str(account.account) + " " + str(account.amount) + " " + str(account.name)
+			masterAccountListFile.write(masterLineToWrite)
+			validLineToWrite = str(account.account)
+			validAccountsListFile.write(validLineToWrite)
 		masterAccountListFile.close()
+		validAccountsListFile.close()
 
 	#Input: Merged Transaction Summary File
 	#Output: None
@@ -61,7 +66,7 @@ class BackEnd:
 			idx += 1
 
 		if transactionSummaryFileData[-1].split()[0] == "ES":
-			self.writeMasterAccountList()
+			self.writeAccountsFiles()
 		else:
 			print "The merged transaction summary file is invalid"
 
