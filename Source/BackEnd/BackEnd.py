@@ -1,79 +1,100 @@
 from Account import Account
+import os.path
 
 class BackEnd:
 
+	#Input: None
+	#Output: The Backend Object
+	#Description: Reads in the Master Account List and Merged Transaction Summary File
+	#Into a dictionary containing account objects
 	def __init__(self):
 		self.accountIdx = 0
 		self.amountIdx = 1
 		self.nameIdx = 2
 		self.masterAccountListName = "MasterAccountList.txt"
-		self.accountDict = self.readAccountListFromFile()
+		self.mergedTransactionSummaryFileName = "MergedTransactionSummaryFile.txt"
+		self.accountDict = self.readAccountDictFromFile()
 
+	#Input: Old Master Account List File
+	#Output: Dictionary of account objects indexed by account number
+	#Description: Parses the master account list file into a dictionary
 	def readAccountDictFromFile(self):
 		accountDict = dict()
-		masterAccountListFile = open(self.masterAccountListName, 'r')
-		for line in masterAccountListFile.read():
-			lineData = line.split()
-			account = lineData[self.accountIdx]
-			amount = int(lineData[self.amountIdx])
-			name = lineData[self.nameIdx]
-			wasCreated = Account(account, amount, name, accountDict).isCreated
-		masterAccountListFile.close()
+		if os.path.exists(self.masterAccountListName):
+			masterAccountListFile = open(self.masterAccountListName, 'r')
+			for line in masterAccountListFile.readlines():
+				lineData = line.split()
+				account = lineData[self.accountIdx]
+				amount = int(lineData[self.amountIdx])
+				name = lineData[self.nameIdx]
+				wasCreated = Account(account, amount, name, accountDict).isCreated
+			masterAccountListFile.close()
 		return accountDict
 
+	#Input: Dictionary of all accounts
+	#Output: New Master Account List File
+	#Description: Formats all the accounts at the end of a backend session into a text file
 	def writeMasterAccountList(self):
 		masterAccountList = []
 		for key in self.accountDict:
 			masterAccountList.append(self.accountDict[key])
 
 		masterAccountList = sorted(masterAccountList, key=lambda x: x.account)
-		masterAccountListFile = open(self.masterAccountListName, 'w')
+		masterAccountListFile = open(self.masterAccountListName, 'w+')
 		for account in masterAccountList:
 			lineToWrite = str(account.account) + " " + str(account.amount) + " " + str(account.name)
 			masterAccountListFile.write(lineToWrite)
 		masterAccountListFile.close()
 
+	#Input: Merged Transaction Summary File
+	#Output: None
+	#Description: Reads Merged Transaction Summary File, updates the accounts dictionary
+	#based on the contents of the transaction summary file
 	def readMergedFile(self):
 		transactionSummaryFile = open(self.mergedTransactionSummaryFileName)
-		for line in transactionSummaryFile.read():
-			lineData = line.split()
-			self.transactionCodeChooser(lineData)
-		if lineData[0] == "ES":
+		transactionSummaryFileData = transactionSummaryFile.readlines()
+		idx = 0
+		while idx < len(transactionSummaryFileData):
+			lineData = transactionSummaryFileData[idx].split()
+			if len(lineData) == 5:
+				self.transactionCodeChooser(lineData)
+			idx += 1
+
+		if transactionSummaryFileData[-1].split()[0] == "ES":
 			self.writeMasterAccountList()
 		else:
 			print "The merged transaction summary file is invalid"
 
-	def transactionCodeChooser(self,lineData):
+	#Input: Parsed line from merged transaction summary file
+	#Output: Updated accounts Dictionary
+	#Description: Based on the contents of the merged transaction summary file line,
+	#update the accounts dict to reflect the command
+	def transactionCodeChooser(self, lineData):
 		transactionCode = lineData[0]
-		if transactionCode == "CR":
-			account = lineData[1]
-			name = lineData[2]
-			amount = 0
-			wasCreated = Account(account, amount, name, self.accountDict).isCreated
-		elif transactionCode == "DL":
-			account = lineData[1]
-			name = lineData[2]
-			if self.accountDict[account].canDeleteAccount(name):
-				del self.accountDict[account]
-			else:
-				print "Incorrect name or account does not exist"
-		elif transactionCode == "TR":
-			accountTo = lineData[1]
-			accountFrom = lineData[2]
-			amount = lineData[3]
-			if not self.accountDict[accountFrom].transfer(amount,accountTo):
-				print "Error transfering"
-		elif transactionCode == "WD":
-			account = lineData[1]
-			amount = lineData[2]
-			if not self.accountDict[account].withdrawMoney(amount):
-				print "Withdraw error"
-		elif transactionCode == "DE":
-			account = lineData[1]
-			amount = lineData[2]
-			self.accountDict[account].depositMoney(amount)
-
-
+		accountTo = lineData[1]
+		accountFrom = lineData[2]
+		amount = lineData[3]
+		name = lineData[4]
+		if self.accountDict.has_key(accountTo):
+			if transactionCode == "DL":
+				if self.accountDict[accountTo].canDeleteAccount(name):
+					del self.accountDict[accountTo]
+				else:
+					print "Incorrect name or account does not exist"
+			elif transactionCode == "TR":
+				if self.accountDict.has_key(accountFrom):
+					if not self.accountDict[accountFrom].transfer(amount, self.accountDict[accountTo]):
+						print "Error Transferring"
+				else:
+					print "Error Transferring"
+			elif transactionCode == "WD":
+				if not self.accountDict[accountTo].withdrawMoney(amount):
+					print "Withdraw error"
+			elif transactionCode == "DE":
+				self.accountDict[accountTo].depositMoney(amount)
+		else:
+			if transactionCode == "CR":
+				wasCreated = Account(accountTo, amount, name, self.accountDict).isCreated
 
 
 backEnd = BackEnd()
