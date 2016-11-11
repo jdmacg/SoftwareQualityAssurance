@@ -42,6 +42,8 @@ class Account:
 		if self.withdrawMoney(amount):
 			if toAccount.depositMoney(amount):
 				return True
+			else:
+				self.depositMoney(amount)
 		return False
 
 	#Input: Name of account
