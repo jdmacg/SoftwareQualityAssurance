@@ -96,7 +96,8 @@ class BackEnd:
 				if not self.accountDict[accountTo].withdrawMoney(amount):
 					print "Withdraw error"
 			elif transactionCode == "DE":
-				self.accountDict[accountTo].depositMoney(amount)
+				if not self.accountDict[accountTo].depositMoney(amount)
+					print "Deposit error"
 		else:
 			if transactionCode == "CR":
 				wasCreated = Account(accountTo, amount, name, self.accountDict).isCreated
