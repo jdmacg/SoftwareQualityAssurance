@@ -2,6 +2,17 @@ from Account import Account
 import os.path
 import pdb
 
+#Nicholas Petrielli 10107308
+#Andrew Storus 		10103737
+#Jordan McGregor 	10052770
+#The intention of this program is to implement a backend of a banking system.
+#The backend reads in the input files given which are a merged transaction summary file and a master account list.
+#After setting up all of the accounts in the master account list file all of the transactions from the merged transaction summary file are applied
+#Upon completion the program outputs a new updated master account list file, as well as a valid account list file.
+#The program is intended to be ran with the master account list file as well as the merged transaction summary file to be in the same
+#directory as the python file. The accounts should be named MasterAccountList.txt and MergedTransactionSummaryFile.txt to
+#represent the master account list and the merged transaction summary file respectively.
+
 class BackEnd:
 
     #Input: None
@@ -12,6 +23,11 @@ class BackEnd:
         self.accountIdx = 0
         self.amountIdx = 1
         self.nameIdx = 2
+        self.transactionIdx = 0
+        self.accountToIdx = 1
+        self.accountFromIdx = 2
+        self.amountDataIdx = 3
+        self.nameDataIdx = 4
         self.masterAccountListName = "MasterAccountList.txt"
         self.mergedTransactionSummaryFileName = "MergedTransactionSummaryFile.txt"
         self.validAccountsFile = "ValidAccountsFile.txt"
@@ -76,11 +92,11 @@ class BackEnd:
     #Description: Based on the contents of the merged transaction summary file line,
     #update the accounts dict to reflect the command
     def transactionCodeChooser(self, lineData):
-        transactionCode = lineData[0]
-        accountTo = lineData[1]
-        accountFrom = lineData[2]
-        amount = lineData[3]
-        name = lineData[4]
+        transactionCode = lineData[self.transactionIdx]
+        accountTo = lineData[self.accountToIdx]
+        accountFrom = lineData[self.accountFromIdx]
+        amount = lineData[self.amountDataIdx]
+        name = lineData[self.nameDataIdx]
         if self.accountDict.has_key(accountTo):
             if transactionCode == "DL":
                 if self.accountDict[accountTo].canDeleteAccount(name):
