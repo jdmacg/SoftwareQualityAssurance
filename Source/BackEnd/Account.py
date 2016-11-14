@@ -30,7 +30,7 @@ class Account:
 	#Description: increases the amount of money in this account
 	def depositMoney(self, amount):
 		if self.amount + int(amount) > 99999999:
-			return false
+			return False
 		self.amount += int(amount)
 		return True
 
