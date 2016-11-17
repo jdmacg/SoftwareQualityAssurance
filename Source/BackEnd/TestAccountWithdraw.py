@@ -30,7 +30,7 @@ class TestAccountCreate(unittest.TestCase):
 	amountToWithdraw = 0
 	didWithdraw = account.withdrawMoney(amountToWithdraw)
 	self.assertEqual(initialAmount, account.amount)
-	self.assertFalse(didWithdraw)
+	self.assertTrue(didWithdraw)
 
     def test_withdrawAmount_LessThan1000(self):
         initialAmount = 1000
@@ -43,8 +43,8 @@ class TestAccountCreate(unittest.TestCase):
         self.assertEqual(initialAmount,account.amount)
         amountToWithdraw = 100
         didWithdraw = account.withdrawMoney(amountToWithdraw)
-        self.assertEqual(initialAmount, account.amount)
-        self.assertFalse(didWithdraw)
+        self.assertEqual(initialAmount-amountToWithdraw, account.amount)
+        self.assertTrue(didWithdraw)
 		
     def test_withdrawAmount_LessThan99999999(self):
         initialAmount = 50000000
@@ -57,8 +57,8 @@ class TestAccountCreate(unittest.TestCase):
         self.assertEqual(initialAmount,account.amount)
         amountToWithdraw = 1000000
         didWithdraw = account.withdrawMoney(amountToWithdraw)
-        self.assertEqual(initialAmount, account.amount)
-        self.assertFalse(didWithdraw)
+        self.assertEqual(initialAmount-amountToWithdraw, account.amount)
+        self.assertTrue(didWithdraw)
 
     def test_withdrawAmount_moreThan99999999(self):
         initialAmount = 1000
@@ -70,6 +70,20 @@ class TestAccountCreate(unittest.TestCase):
 
         self.assertEqual(initialAmount,account.amount)
         amountToWithdraw = 100000000
+        didWithdraw = account.withdrawMoney(amountToWithdraw)
+        self.assertEqual(initialAmount, account.amount)
+        self.assertFalse(didWithdraw)
+
+    def test_withdrawAmount_moreThanBalance(self):
+        initialAmount = 100
+        accountNum = "00000001"
+        accountAmount = initialAmount
+        accountName = "ABC"
+        allAccounts = dict()
+        account = Account(accountNum, accountAmount, accountName, allAccounts)
+
+        self.assertEqual(initialAmount,account.amount)
+        amountToWithdraw = 1000
         didWithdraw = account.withdrawMoney(amountToWithdraw)
         self.assertEqual(initialAmount, account.amount)
         self.assertFalse(didWithdraw)

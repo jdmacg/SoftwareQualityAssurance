@@ -20,6 +20,8 @@ class Account:
 	#Output: nothing
 	#Description: reduces the ammount of money in this account
 	def withdrawMoney(self, amount) :
+		if amount < 0:
+			return False
 		if self.amount - int(amount) < 0:
 			return False
 		self.amount -= int(amount)
