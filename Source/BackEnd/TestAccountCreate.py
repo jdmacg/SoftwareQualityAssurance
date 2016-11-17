@@ -6,7 +6,7 @@ from Account import Account
 class TestAccountCreate(unittest.TestCase):
 
     def test_createAccount_newValidAccount(self):
-        accountNum = "00000000"
+        accountNum = "00000001"
         accountAmount = 100
         accountName = "ABC"
         allAccounts = dict()
@@ -19,7 +19,7 @@ class TestAccountCreate(unittest.TestCase):
 
 
     def test_createAccount_alreadyExistingAccountNumber(self):
-        accountNum = "00000000"
+        accountNum = "00000001"
         accountAmount = 0
         accountName = "ABC"
         allAccounts = dict()
@@ -32,8 +32,8 @@ class TestAccountCreate(unittest.TestCase):
 
 
     def test_createAccount_amountLessThanZero(self):
-        accountNum = "00000000"
-        accountAmount = -1
+        accountNum = "00000001"
+        accountAmount = -100
         accountName = "ABC"
         allAccounts = dict()
 
