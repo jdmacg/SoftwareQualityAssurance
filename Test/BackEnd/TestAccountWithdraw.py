@@ -11,7 +11,7 @@ backend = os.path.abspath(os.path.join(srcdir, backend))
 sys.path.append(backend)
 from Account import Account
 
-class TestAccountCreate(unittest.TestCase):
+class TestAccountWithdraw(unittest.TestCase):
 
     def test_withdrawAmount_lessThanZero(self):
         initialAmount = 10000
@@ -26,21 +26,22 @@ class TestAccountCreate(unittest.TestCase):
         didWithdraw = account.withdrawMoney(amountToWithdraw)
         self.assertEqual(initialAmount, account.amount)
         self.assertFalse(didWithdraw)
-    def test_withdrawAmount_equalToZero(self):
-	initialAmount = 1000
-	accountNum = "00000001"
-	accountAmount = initialAmount
-	accountName = "ABC"
-	allAccounts = dict()
-	account = Account(accountNum, accountAmount, accountName, allAccounts)
-	
-	self.assertEqual(initialAmount,account.amount)
-	amountToWithdraw = 0
-	didWithdraw = account.withdrawMoney(amountToWithdraw)
-	self.assertEqual(initialAmount, account.amount)
-	self.assertTrue(didWithdraw)
 
-    def test_withdrawAmount_LessThan1000(self):
+    def test_withdrawAmount_equalToZero(self):
+	    initialAmount = 1000
+	    accountNum = "00000001"
+	    accountAmount = initialAmount
+	    accountName = "ABC"
+	    allAccounts = dict()
+	    account = Account(accountNum, accountAmount, accountName, allAccounts)
+
+	    self.assertEqual(initialAmount,account.amount)
+	    amountToWithdraw = 0
+	    didWithdraw = account.withdrawMoney(amountToWithdraw)
+	    self.assertEqual(initialAmount, account.amount)
+	    self.assertTrue(didWithdraw)
+
+    def test_withdrawAmount_BetweenZeroAndTenThousand(self):
         initialAmount = 1000
         accountNum = "00000001"
         accountAmount = initialAmount
