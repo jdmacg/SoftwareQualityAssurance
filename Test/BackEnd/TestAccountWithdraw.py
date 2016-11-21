@@ -1,5 +1,4 @@
 import unittest
-import mock
 import copy
 import os
 import sys
