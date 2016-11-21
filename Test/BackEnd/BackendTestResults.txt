@@ -8,14 +8,13 @@ Ran 3 tests in 0.000s
 
 OK
 Testing Account Withdraw
-test_withdrawAmount_LessThan1000 (TestAccountWithdraw.TestAccountCreate) ... ok
-test_withdrawAmount_LessThan99999999 (TestAccountWithdraw.TestAccountCreate) ... ok
+test_withdrawAmount_betweenOneHundredThousandAndMax (TestAccountWithdraw.TestAccountCreate) ... ok
+test_withdrawAmount_betweenZeroAndOneHundredThousand (TestAccountWithdraw.TestAccountCreate) ... ok
 test_withdrawAmount_equalToZero (TestAccountWithdraw.TestAccountCreate) ... ok
 test_withdrawAmount_lessThanZero (TestAccountWithdraw.TestAccountCreate) ... ok
-test_withdrawAmount_moreThan99999999 (TestAccountWithdraw.TestAccountCreate) ... ok
-test_withdrawAmount_moreThanBalance (TestAccountWithdraw.TestAccountCreate) ... ok
+test_withdrawAmount_moreThanMax (TestAccountWithdraw.TestAccountCreate) ... ok
 
 ----------------------------------------------------------------------
-Ran 6 tests in 0.000s
+Ran 5 tests in 0.000s
 
 OK
