@@ -1,6 +1,7 @@
 login
 atm
-deposit
+withdraw
 11111110
 100
 logout
+

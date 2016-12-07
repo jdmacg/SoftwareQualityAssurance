@@ -8,6 +8,7 @@ weeklyText = sys.path[0] + '/weeklyTextInput/'
 validAccountBackend = sys.path[0] + '/BackEnd/ValidAccounts.txt'
 frontEndDir = sys.path[0] + '/FrontEnd/'
 
+
 class weeklyScript:
 	
 	def __init__(self):
@@ -29,9 +30,11 @@ class weeklyScript:
 		weeklyDirectories = os.listdir(weeklyText)
 		for directory in weeklyDirectories:
 			newFileDir = weeklyText + directory + '/'
-			cleanTextPath()
-			copyFiles(newFileDir)
-			dailyScript
+			self.cleanTextPath()
+			self.copyFiles(newFileDir)
+			os.chdir(sys.path[0] + '/BackEnd/')
+			dailyScript.startNewDay()
+			os.chdir(sys.path[0])
 			os.system('cp ' + validAccountBackend + ' ' + frontEndDir)
 
 

@@ -9,6 +9,13 @@ runScriptPath = sys.path[0] + '/RunScript.sh'
 textPath = sys.path[0] + '/textInput/'
 transactionSummPath = sys.path[0] + '/dailyTransactionFiles/'
 
+def startNewDay():
+	newDay = dailyScript()
+	newDay.clearOldTransactionFiles()
+	newDay.runFrontEnd()
+	newDay.mergeTransactionFiles()
+	newDay.callBackEnd()
+
 class dailyScript:
 
 	def __init__(self):
@@ -55,8 +62,4 @@ class dailyScript:
 		os.chdir(sys.path[0] + '/BackEnd/')
 		os.system('python ' + backEndPath)	
 
-newDay = dailyScript()
-newDay.clearOldTransactionFiles()
-newDay.runFrontEnd()
-newDay.mergeTransactionFiles()
-newDay.callBackEnd()
+startNewDay()
