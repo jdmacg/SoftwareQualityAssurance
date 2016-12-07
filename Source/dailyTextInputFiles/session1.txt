@@ -1,0 +1,9 @@
+login
+agent
+deposit
+11111110
+5000
+withdraw
+11111110
+500
+logout

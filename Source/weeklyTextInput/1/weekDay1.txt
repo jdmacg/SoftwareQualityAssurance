@@ -1,0 +1,12 @@
+]login
+agent
+create
+12345678
+FirstAcc
+create
+87654321
+SecondAcc
+create
+11112222
+ThirdAcc
+logout
