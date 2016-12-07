@@ -30,7 +30,7 @@ class BackEnd:
         self.nameDataIdx = 4
         self.masterAccountListName = "MasterAccountList.txt"
         self.mergedTransactionSummaryFileName = "MergedTransactionSummaryFile.txt"
-        self.validAccountsFile = "ValidAccountsFile.txt"
+        self.validAccountsFile = "ValidAccounts.txt"
         self.accountDict = self.readAccountDictFromFile()
 
     #Input: Old Master Account List File
