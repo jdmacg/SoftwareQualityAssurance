@@ -1,6 +1,6 @@
 import os 
 import sys
-sys.path.append(sys.path[0]+'/FrontEnd/')
+#sys.path.append(sys.path[0]+'/FrontEnd/')
 import subprocess
 
 frontEndPath = sys.path[0] + '/FrontEnd/FrontEnd.py'

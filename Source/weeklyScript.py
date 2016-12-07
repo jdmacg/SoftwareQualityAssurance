@@ -33,7 +33,7 @@ class weeklyScript:
 			self.cleanTextPath()
 			self.copyFiles(newFileDir)
 			os.chdir(sys.path[0] + '/BackEnd/')
-			dailyScript.startNewDay()
+			dailyScript
 			os.chdir(sys.path[0])
 			os.system('cp ' + validAccountBackend + ' ' + frontEndDir)
 
