@@ -66,6 +66,7 @@ class BackEnd:
             validLineToWrite = str(account.account) + "\n"
             validAccountsListFile.writelines(validLineToWrite)
         masterAccountListFile.close()
+	validAccountsListFile.writelines("00000000")
         validAccountsListFile.close()
 
     #Input: Merged Transaction Summary File
