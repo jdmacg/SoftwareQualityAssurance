@@ -1,0 +1,12 @@
+login
+atm
+withdraw
+11112222
+1000
+withdraw
+10000000
+99999
+withdraw
+10107308
+50
+logout

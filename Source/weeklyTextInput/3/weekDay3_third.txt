@@ -1,0 +1,5 @@
+login
+atm
+delete
+11112222
+logout

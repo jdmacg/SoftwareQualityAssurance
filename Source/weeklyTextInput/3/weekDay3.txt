@@ -1,0 +1,13 @@
+login
+atm
+withdraw
+11112222
+1000
+deposit
+10000000
+999
+transfer
+10000000
+11112222
+999
+logout
