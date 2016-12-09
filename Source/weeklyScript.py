@@ -2,7 +2,6 @@ import os
 import sys
 import subprocess
 import dailyScript
-
 #Creating path names based off of the system
 textPath = sys.path[0] + '/textInput/'
 weeklyText = sys.path[0] + '/weeklyTextInput/'
@@ -17,7 +16,7 @@ class weeklyScript:
 	#Initialization method for the python class, doesn't really do anything
 	def __init__(self):
 		self.hasRan = 0
-
+		self.cleanTextPath(textPath)
 	#input: Directory to remove files from
 	#output: none
 	#description:Clears all files in a given directory
@@ -56,6 +55,7 @@ class weeklyScript:
 			masterAccountName = masterAccount + 'MasterAccountList.txt'
 			newMasterAccountName  = masterAccount + 'MasterAccountList' + str(directory) + '.txt'
 			os.system('mv ' + masterAccountName + ' ' + newMasterAccountName)
+		self.cleanTextPath(textPath)
 
 
 

@@ -84,6 +84,8 @@ class BackEnd:
             if len(lineData) == 5:
                 self.transactionCodeChooser(lineData)
             idx += 1
+	if len(transactionSummaryFileData) == 0:
+		return	
 
         if transactionSummaryFileData[-1].split()[0] == "ES":
             self.writeAccountsFiles()
