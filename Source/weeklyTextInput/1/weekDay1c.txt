@@ -3,3 +3,4 @@ agent
 create
 10000000
 lastAccount
+logout
