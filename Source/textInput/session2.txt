@@ -1,0 +1,7 @@
+login
+atm
+transfer
+11111110
+11111120
+500
+logout
