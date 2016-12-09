@@ -41,7 +41,9 @@ class BackEnd:
         if os.path.exists(self.masterAccountListName):
             masterAccountListFile = open(self.masterAccountListName, 'r')
             for line in masterAccountListFile.readlines():
-                lineData = line.split()
+		lineData = line.split()
+		if len(lineData) == 0:
+			break;
                 account = lineData[self.accountIdx]
                 amount = int(lineData[self.amountIdx])
                 name = lineData[self.nameIdx]
